@@ -5,5 +5,9 @@
     "phoenix": "file:../deps/phoenix",
     "phoenix_html": "file:../deps/phoenix_html",
     "phoenix_live_view": "file:../deps/phoenix_live_view"
+  },
+  "devDependencies": {
+    "esbuild": "^0.17.18",
+    "eslint": "^8.39.0"
   }
 }
