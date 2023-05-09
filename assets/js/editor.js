@@ -7,16 +7,17 @@ class Editor {
     this.el = el
     this.source = source
     this.opts = opts
+    this.monaco = null
     this._onMount = []
   }
 
   isMounted() {
-    return !!this.editor
+    return !!this.monaco
   }
 
   mount() {
     if (this.isMounted()) {
-      throw new Error("The editor is already mounted")
+      throw new Error("The monaco editor is already mounted")
     }
 
     this._mountEditor()
@@ -30,9 +31,9 @@ class Editor {
 
   dispose() {
     if (this.isMounted()) {
-      this.editor.dispose()
+      this.monaco.dispose()
 
-      const model = this.editor.getModel()
+      const model = this.monaco.getModel()
 
       if (model) {
         model.dispose()
@@ -42,7 +43,7 @@ class Editor {
 
   _mountEditor() {
     this.opts.value = this.source
-    this.editor = monaco.editor.create(this.el, this.opts)
+    this.monaco = monaco.editor.create(this.el, this.opts)
   }
 }
 

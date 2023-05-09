@@ -58,5 +58,11 @@ defmodule LiveMonacoEditor do
     """
   end
 
+  @doc """
+  Default Monacto Editor options:
+
+    #{inspect(@default_opts)}
+
+  """
   def default_opts, do: @default_opts
 end
