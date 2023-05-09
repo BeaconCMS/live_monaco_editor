@@ -1,5 +1,12 @@
 {
   "private": true,
+  "scripts": {
+    "format": "prettier --write .",
+    "format-check": "prettier --check .",
+    "build": "webpack --mode development",
+    "watch": "webpack --mode development --watch",
+    "deploy": "NODE_ENV=production webpack --mode production"
+  },
   "dependencies": {
     "monaco-editor": "^0.38.0",
     "phoenix": "file:../deps/phoenix",
@@ -7,7 +14,17 @@
     "phoenix_live_view": "file:../deps/phoenix_live_view"
   },
   "devDependencies": {
-    "esbuild": "^0.17.18",
-    "eslint": "^8.39.0"
+    "@babel/core": "^7.21.8",
+    "@babel/preset-env": "^7.21.5",
+    "babel-loader": "^9.1.2",
+    "css-loader": "^6.7.3",
+    "eslint": "^8.39.0",
+    "eslint-config-prettier": "^8.8.0",
+    "html-loader": "^4.2.0",
+    "mini-css-extract-plugin": "^2.7.5",
+    "monaco-editor-webpack-plugin": "^7.0.1",
+    "prettier": "^2.8.8",
+    "webpack": "^5.82.0",
+    "webpack-cli": "^5.1.0"
   }
 }

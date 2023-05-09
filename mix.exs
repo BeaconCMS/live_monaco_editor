@@ -21,13 +21,21 @@ defmodule LiveMonacoEditor.MixProject do
   defp deps do
     [
       {:phoenix, "~> 1.7"},
-      {:phoenix_live_view, "~> 0.18.18"}
+      {:phoenix_live_view, "~> 0.18.18"},
+      {:phoenix_live_reload, "~> 1.4", only: :dev},
+      {:plug_cowboy, "~> 2.6", only: :dev},
+      {:jason, "~> 1.4"}
     ]
   end
 
   defp aliases do
     [
-      setup: ["deps.get", "cmd npm install --prefix assets"]
+      setup: ["deps.get", "assets.setup"],
+      format: ["format", "cmd npm run format --prefix ./assets"],
+      dev: "run --no-halt dev.exs",
+      "assets.setup": ["cmd --cd assets npm install"],
+      "assets.build": ["cmd --cd assets npm run build"],
+      "assets.build.watch": ["cmd --cd assets npm run build.watch"]
     ]
   end
 end
