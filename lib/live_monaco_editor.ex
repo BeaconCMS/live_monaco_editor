@@ -8,19 +8,13 @@ defmodule LiveMonacoEditor do
     "language" => "markdown",
     "fontSize" => 14,
     "automaticLayout" => true,
-    "scrollbar" => %{
-      "vertical" => "hidden",
-      "alwaysConsumeMouseWheel" => true
-    },
     "minimap" => %{
       "enabled" => false
     },
-    "wordWrap" => "off",
     "scrollBeyondLastLine" => false,
     "occurrencesHighlight" => false,
     "renderLineHighlight" => "none",
     "tabSize" => 2,
-    "autoIndent" => true,
     "formatOnType" => true,
     "formatOnPaste" => true,
     "tabCompletion" => "on",
@@ -33,15 +27,14 @@ defmodule LiveMonacoEditor do
   attr :opts, :map,
     default: @default_opts,
     doc: """
-    options for the monaco editor instance.
-
+    options for the monaco editor instance. Defaults to LiveMonacoEditor.default_opts()
 
     ## Example
 
         %{
           "language" => "markdown",
-          "fontSize" => 14,
-          "wordWrap" => "off"
+          "fontSize" => 12,
+          "wordWrap" => "on"
         }
 
     See all available options at https://microsoft.github.io/monaco-editor/docs.html#interfaces/editor.IStandaloneEditorConstructionOptions.html
@@ -86,8 +79,6 @@ defmodule LiveMonacoEditor do
   def change_language(socket, mime_type_or_language_id, opts \\ [])
       when is_binary(mime_type_or_language_id) do
     to = Keyword.get(opts, :to, @default_id)
-
-    dbg("lme:change_language:#{to}")
 
     push_event(socket, "lme:change_language:#{to}", %{
       "mimeTypeOrLanguageId" => mime_type_or_language_id

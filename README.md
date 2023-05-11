@@ -17,13 +17,13 @@ end
 Once installed, we need to import and serve the assets. Change your `assets/css/app.css` to import the editor CSS:
 
 ```css
-@import "../../deps/live_monaco_editor/priv/static/main.css"
+@import "../../deps/live_monaco_editor/priv/static/main"
 ```
 
 Also change your `assets/js/app.js` to load the code editor hook in the live socket:
 
 ```js
-import { CodeEditorHook } from "../../deps/live_monaco_editor/priv/static/main.js"
+import { CodeEditorHook } from "../../deps/live_monaco_editor/priv/static/main"
 
 let Hooks = {}
 Hooks.CodeEditorHook = CodeEditorHook
@@ -100,7 +100,7 @@ window.addEventListener("lme:editor_mounted", (ev) => {
   // push an event to the parent liveview containing the editor current value
   // when the editor loses focus
   editor.onDidBlurEditorWidget(() => {
-    hook.pushEvent("editor_lost_focus", { value: editor.getValue() })
+    hook.pushEvent("code-editor-lost-focus", { value: editor.getValue() })
   })
 })
 ```
@@ -108,8 +108,8 @@ window.addEventListener("lme:editor_mounted", (ev) => {
 Then you can handle that event on the LiveView to save the editor content or perform any sort of operation you need:
 
 ```elixir
-def handle_event("editor_lost_focus", %{"value" => value}, socket) do
-  {:noreply, assign(socket, :value, value)}
+def handle_event("code-editor-lost-focus", %{"value" => value}, socket) do
+  {:noreply, assign(socket, :source, value)}
 end
 ```
 

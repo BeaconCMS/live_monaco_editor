@@ -24,6 +24,7 @@ const CodeEditorHook = {
 
     this.handleEvent("lme:change_language:" + this.el.id, (data) => {
       const model = this.editor.standalone_code_editor.getModel()
+
       if (model.getLanguageId() !== data.mimeTypeOrLanguageId) {
         monaco.editor.setModelLanguage(model, data.mimeTypeOrLanguageId)
       }
