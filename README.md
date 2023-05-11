@@ -30,7 +30,7 @@ import { CodeEditorHook } from "../../deps/live_monaco_editor/priv/static/main.j
 let Hooks = {}
 Hooks.CodeEditorHook = CodeEditorHook
 
-let liveSocket = new LiveSocket("/live", Socket, { params: { _csrf_token: csrfToken }, hooks: Hooks })
+let liveSocket = new LiveSocket("/live", Socket, { hooks: Hooks, params: { _csrf_token: csrfToken } })
 ```
 
 And finally change `lib/my_app/endpoint.ex` to add the plug static to serve the assets:
@@ -55,7 +55,7 @@ A new editor using the default options can be created as:
 
 ### Change editor options
 
-All [monaco editor options](https://microsoft.github.io/monaco-editor/docs.html#interfaces/editor.IStandaloneEditorConstructionOptions.html) are supported by passing a `opts` maps to the component, for example to change the initial language and some other visual options:
+All [monaco editor options](https://microsoft.github.io/monaco-editor/docs.html#interfaces/editor.IStandaloneEditorConstructionOptions.html) are supported by passing a map to `opts`, for example to change the initial language and some other visual options:
 
 ```heex
 <LiveMonacoEditor.code_editor
@@ -82,7 +82,7 @@ The code editor is created with default options to provide a better UX out-of-th
   opts={
     Map.merge(
       LiveMonacoEditor.default_opts(),
-      %{"wordWrap" => "off"}
+      %{"wordWrap" => "on"}
     )
   }
 />
@@ -95,11 +95,12 @@ You can listen to events emitted by the code editor to fetch its current value a
 ```javascript
 window.addEventListener("lme:editor_mounted", (ev) => {
   const hook = ev.detail.hook
-  # https://microsoft.github.io/monaco-editor/docs.html#interfaces/editor.IStandaloneCodeEditor.html
+  
+  // https://microsoft.github.io/monaco-editor/docs.html#interfaces/editor.IStandaloneCodeEditor.html
   const editor = ev.detail.editor.standalone_code_editor
 
-  # push an event to the parent liveview containing the editor current value
-  # when the editor loses focus
+  // push an event to the parent liveview containing the editor current value
+  // when the editor loses focus
   editor.onDidBlurEditorWidget(() => {
     hook.pushEvent("editor_lost_focus", { value: editor.getValue() })
   })
@@ -140,6 +141,8 @@ def handle_event("change-file", _params, socket) do
 end
 ```
 
+_More operations will be supported in new releases._
+
 ### Multiple editors in the same page
 
 Give an unique ID to each editor instance to create multiple editors:
@@ -151,7 +154,7 @@ Give an unique ID to each editor instance to create multiple editors:
 
 ### Styling
 
-The component does not depend on any CSS framework but its parent container has to be big enough to be visible. The default style can be changed or classes can be applied:
+The component does not depend on any CSS framework but its parent container has to be large enough to be visible. The default style can be changed and/or classes can be applied:
 
 ```heex
 <LiveMonacoEditor.code_editor
