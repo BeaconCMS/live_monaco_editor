@@ -2,8 +2,6 @@
 
 [Monaco Editor](https://microsoft.github.io/monaco-editor/) component for Phoenix LiveView.
 
-**TODO: Add description**
-
 ## Installation
 
 Add `:live_monaco_editor` dependency:
@@ -127,7 +125,6 @@ end
 
 ### Change language and value
 
-
 ```heex
 <button phx-click="change-file">my_file.html</button>
 ```
@@ -147,7 +144,7 @@ _More operations will be supported in new releases._
 
 Give an unique ID to each editor instance to create multiple editors:
 
-```
+```heex
 <LiveMonacoEditor.code_editor id="editor-markdown" />
 <LiveMonacoEditor.code_editor id="editor-html" />
 ```
@@ -165,7 +162,7 @@ The component does not depend on any CSS framework but its parent container has 
 
 ## Status
 
-Pre-release version. You can expect incomplete features and breaking changes before a stable v0.1.0 is released.
+Experimental. You can expect incomplete features and breaking changes before a stable v0.1.0 is released.
 
 ## Acknowledgements
 
