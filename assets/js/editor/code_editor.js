@@ -2,17 +2,18 @@
 
 import monaco from "./monaco"
 
-class Editor {
-  constructor(el, source, opts) {
+class CodeEditor {
+  constructor(el, value, opts) {
     this.el = el
-    this.source = source
+    this.value = value
     this.opts = opts
-    this.monaco = null
+    // https://microsoft.github.io/monaco-editor/docs.html#interfaces/editor.IStandaloneCodeEditor.html
+    this.standalone_code_editor = null
     this._onMount = []
   }
 
   isMounted() {
-    return !!this.monaco
+    return !!this.standalone_code_editor
   }
 
   mount() {
@@ -31,9 +32,9 @@ class Editor {
 
   dispose() {
     if (this.isMounted()) {
-      this.monaco.dispose()
+      this.standalone_code_editor.dispose()
 
-      const model = this.monaco.getModel()
+      const model = this.standalone_code_editor.getModel()
 
       if (model) {
         model.dispose()
@@ -42,9 +43,9 @@ class Editor {
   }
 
   _mountEditor() {
-    this.opts.value = this.source
-    this.monaco = monaco.editor.create(this.el, this.opts)
+    this.opts.value = this.value
+    this.standalone_code_editor = monaco.editor.create(this.el, this.opts)
   }
 }
 
-export default Editor
+export { CodeEditor, monaco }

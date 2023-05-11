@@ -32,10 +32,10 @@ defmodule LiveMonacoEditor.MixProject do
     [
       setup: ["deps.get", "assets.setup"],
       format: ["format", "cmd npm run format --prefix ./assets"],
-      dev: "run --no-halt dev.exs",
       "assets.setup": ["cmd --cd assets npm install"],
       "assets.build": ["cmd --cd assets npm run build"],
-      "assets.build.watch": ["cmd --cd assets npm run build.watch"]
+      "assets.build.watch": ["cmd --cd assets npm run build.watch"],
+      "assets.deploy": ["cmd --cd assets npm run deploy"],
     ]
   end
 end

@@ -6,4 +6,5 @@ import { theme as darkTheme, lightTheme } from "./theme"
 monaco.editor.defineTheme("default", darkTheme)
 monaco.editor.defineTheme("light", lightTheme)
 
+// https://microsoft.github.io/monaco-editor/docs.html
 export default monaco

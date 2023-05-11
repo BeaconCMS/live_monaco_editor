@@ -5,7 +5,7 @@ const MonacoWebpackPlugin = require("monaco-editor-webpack-plugin")
 module.exports = (_env, options) => {
   return {
     mode: options.mode || "production",
-    entry: "./js/hook.js",
+    entry: "./js/app.js",
     output: {
       path: path.resolve(__dirname, "../priv/static"),
       filename: "[name].js",

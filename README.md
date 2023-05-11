@@ -1,23 +1,22 @@
 # LiveMonacoEditor
 
+[Monaco Editor](https://microsoft.github.io/monaco-editor/) component for Phoenix LiveView.
+
 **TODO: Add description**
 
 ## Installation
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `live_monaco_editor` to your list of dependencies in `mix.exs`:
+Add `:live_monaco_editor` dependency:
 
 ```elixir
 def deps do
   [
-    {:live_monaco_editor, "~> 0.1.0"}
+    {:live_monaco_editor, github: "BeaconCMS/live_monaco_editor"}
   ]
 end
 ```
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at <https://hexdocs.pm/live_monaco_editor>.
+TODO
 
 ## Acknowledgements
 
