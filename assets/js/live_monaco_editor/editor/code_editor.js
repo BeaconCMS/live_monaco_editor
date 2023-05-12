@@ -3,8 +3,9 @@
 import loader from "@monaco-editor/loader"
 
 class CodeEditor {
-  constructor(el, value, opts) {
+  constructor(el, path, value, opts) {
     this.el = el
+    this.path = path
     this.value = value
     this.opts = opts
     // https://microsoft.github.io/monaco-editor/docs.html#interfaces/editor.IStandaloneCodeEditor.html
@@ -44,7 +45,14 @@ class CodeEditor {
     this.opts.value = this.value
 
     loader.init().then((monaco) => {
+      let modelUri = monaco.Uri.parse(this.path)
+      let language = this.opts.language
+      let model = monaco.editor.createModel(this.value, language, modelUri)
+
+      this.opts.language = undefined
+      this.opts.model = model
       this.standalone_code_editor = monaco.editor.create(this.el, this.opts)
+
       this._onMount.forEach((callback) => callback(monaco))
     })
   }

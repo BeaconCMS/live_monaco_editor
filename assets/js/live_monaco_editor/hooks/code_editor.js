@@ -4,26 +4,41 @@ const CodeEditorHook = {
   mounted() {
     // TODO: validate dataset
     const opts = JSON.parse(this.el.dataset.opts)
-    this.codeEditor = new CodeEditor(this.el, this.el.dataset.value, opts)
+    this.codeEditor = new CodeEditor(
+      this.el,
+      this.el.dataset.path,
+      this.el.dataset.value,
+      opts
+    )
 
     this.codeEditor.onMount((monaco) => {
       this.el.dispatchEvent(
         new CustomEvent("lme:editor_mounted", {
-          detail: { id: this.el.id, hook: this, editor: this.codeEditor },
+          detail: { hook: this, editor: this.codeEditor },
           bubbles: true,
         })
       )
 
-      this.handleEvent("lme:change_language:" + this.el.id, (data) => {
-        const model = this.codeEditor.standalone_code_editor.getModel()
+      this.handleEvent(
+        "lme:change_language:" + this.el.dataset.path,
+        (data) => {
+          const model = this.codeEditor.standalone_code_editor.getModel()
 
-        if (model.getLanguageId() !== data.mimeTypeOrLanguageId) {
-          monaco.editor.setModelLanguage(model, data.mimeTypeOrLanguageId)
+          if (model.getLanguageId() !== data.mimeTypeOrLanguageId) {
+            monaco.editor.setModelLanguage(model, data.mimeTypeOrLanguageId)
+          }
         }
+      )
+
+      this.handleEvent("lme:set_value:" + this.el.dataset.path, (data) => {
+        this.codeEditor.standalone_code_editor.setValue(data.value)
       })
 
-      this.handleEvent("lme:set_value:" + this.el.id, (data) => {
-        this.codeEditor.standalone_code_editor.setValue(data.value)
+      this.el.querySelectorAll("textarea").forEach((textarea) => {
+        textarea.setAttribute(
+          "name",
+          "live_monaco_editor[" + this.el.dataset.path + "]"
+        )
       })
 
       this.el.removeAttribute("data-value")
@@ -31,7 +46,7 @@ const CodeEditorHook = {
     })
 
     if (!this.codeEditor.isMounted()) {
-      this.codeEditor.mount(this.el.id, this)
+      this.codeEditor.mount()
     }
   },
 

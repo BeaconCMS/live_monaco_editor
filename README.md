@@ -46,7 +46,7 @@ Visit http://localhost:4002
 
 ## Features
 
-### Change editor options
+### Set editor options
 
 All [monaco editor options](https://microsoft.github.io/monaco-editor/docs.html#interfaces/editor.IStandaloneEditorConstructionOptions.html) are supported by passing a map to `opts`, for example to change the initial language and some other visual options:
 
@@ -108,15 +108,43 @@ def handle_event("code-editor-lost-focus", %{"value" => value}, socket) do
 end
 ```
 
+### Multiple editors
+
+Set an unique `id` and `path` for each one:
+
+```heex
+<LiveMonacoEditor.code_editor id="html" path="my_file.html" />
+<LiveMonacoEditor.code_editor id="css" path="my_file.css" />
+```
+
 ### Inside forms with phx-change
 
-Monaco Editor will create a `textarea` element that will get pushed back to the server and affect your phx-change logic. To overcome this problem you can ignore it:
+Monaco Editor will create a `textarea` element that will get pushed back to the server with the `path` value:
+
+```heex
+<form phx-change="validate">
+  <LiveMonacoEditor.code_editor path="my_file.html" value="<h1>Title</h1>" />
+</form>
+```
+
+Which you can pattern match to either ignore or process the value:
 
 ```elixir
-def handle_event("validate", %{"_target" => ["undefined"]}, socket) do
+def handle_event(
+      "validate",
+      %{
+        "_target" => ["live_monaco_editor", "my_file.html"],
+        "live_monaco_editor" => %{"my_file.html" => content}
+      },
+      socket
+    ) do
+  # do something with `content`
+  # or just ignore the event
   {:noreply, socket}
 end
 ```
+
+_Note that only adding new content into the editor will trigger this event. For example hitting "backspace" won't trigger this event._
 
 ### Change language and value
 
@@ -134,15 +162,6 @@ end
 ```
 
 _More operations will be supported in new releases._
-
-### Multiple editors in the same page
-
-Give an unique ID to each editor instance to create multiple editors:
-
-```heex
-<LiveMonacoEditor.code_editor id="editor-markdown" />
-<LiveMonacoEditor.code_editor id="editor-html" />
-```
 
 ### Styling
 
