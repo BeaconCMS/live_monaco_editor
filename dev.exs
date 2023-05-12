@@ -26,14 +26,14 @@ Application.put_env(:sample, Sample.Endpoint,
   check_origin: false,
   pubsub_server: Sample.PubSub,
   live_reload: [
+    url: "ws://localhost:4002",
     patterns: [
       ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",
-      ~r"priv/static/dev/.*(js|css|png|jpeg|jpg|gif|svg)$",
       ~r"lib/.*(ex)$"
     ]
   ],
   watchers: [
-    esbuild: {Esbuild, :install_and_run, [:module, ~w(--sourcemap=inline --watch)]}
+    esbuild: {Esbuild, :install_and_run, [:module, ~w(--watch)]}
   ]
 )
 
@@ -68,6 +68,8 @@ defmodule Sample.EditorLive do
           let csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content");
           let liveSocket = new window.LiveView.LiveSocket("/live", window.Phoenix.Socket, { hooks: Hooks, params: {_csrf_token: csrfToken} })
           liveSocket.connect()
+          liveSocket.enableDebug()
+          window.liveSocket = liveSocket
         </script>
       </head>
       <body>
@@ -86,29 +88,52 @@ defmodule Sample.EditorLive do
       """)
 
     ~H"""
-    <h1>Default Options</h1>
+    <h1>Default options</h1>
+    <LiveMonacoEditor.code_editor value={@value} />
+
+    <h1>Change language and value</h1>
     <button phx-click="html">HTML</button>
     <button phx-click="markdown">Markdown</button>
-    <LiveMonacoEditor.code_editor value={@value} style="height: 100%; width: 100%; min-height: 100px; min-width: 200px; margin-top: 50px" />
+    <LiveMonacoEditor.code_editor id="lang" path="file_b" value="# file_b" />
+
+    <h1>Inside form</h1>
+    <form phx-change="validate">
+      <LiveMonacoEditor.code_editor id="form" path="file_c" value="# file_c" />
+    </form>
     """
   end
 
   def handle_event("markdown", _params, socket) do
     {:noreply,
      socket
-     |> LiveMonacoEditor.change_language("markdown")
-     |> LiveMonacoEditor.set_value(~S"""
-     # Title
+     |> LiveMonacoEditor.change_language("markdown", to: "file_b")
+     |> LiveMonacoEditor.set_value(
+       ~S"""
+       # Title
 
-     new content
-     """)}
+       new content
+       """,
+       to: "file_b"
+     )}
   end
 
   def handle_event("html", _params, socket) do
     {:noreply,
      socket
-     |> LiveMonacoEditor.change_language("html")
-     |> LiveMonacoEditor.set_value("<h1>new value</h1>")}
+     |> LiveMonacoEditor.change_language("html", to: "file_b")
+     |> LiveMonacoEditor.set_value("<h1>new value</h1>", to: "file_b")}
+  end
+
+  def handle_event(
+        "validate",
+        %{
+          "_target" => ["live_monaco_editor", "file_c"],
+          "live_monaco_editor" => %{"file_c" => content}
+        },
+        socket
+      ) do
+    IO.puts(content)
+    {:noreply, socket}
   end
 end
 
