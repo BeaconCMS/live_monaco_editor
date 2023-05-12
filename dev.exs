@@ -29,18 +29,11 @@ Application.put_env(:sample, Sample.Endpoint,
     patterns: [
       ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",
       ~r"priv/static/dev/.*(js|css|png|jpeg|jpg|gif|svg)$",
-      "lib/live_monaco_editor.ex"
+      ~r"lib/.*(ex)$"
     ]
   ],
   watchers: [
-    node: [
-      "node_modules/webpack/bin/webpack.js",
-      "--mode",
-      "development",
-      "--watch",
-      "--watch-options-stdin",
-      cd: "assets"
-    ]
+    esbuild: {Esbuild, :install_and_run, [:module, ~w(--sourcemap=inline --watch)]}
   ]
 )
 
@@ -53,16 +46,24 @@ defmodule Sample.EditorLive do
     <html>
       <head>
         <meta name="csrf-token" content={Plug.CSRFProtection.get_csrf_token()} />
-        <link href="/live_monaco_editor/main.css" rel="stylesheet" />
         <script src="https://cdn.jsdelivr.net/npm/phoenix@1.7.2/priv/static/phoenix.min.js">
         </script>
         <script
           src="https://cdn.jsdelivr.net/npm/phoenix_live_view@0.18.18/priv/static/phoenix_live_view.min.js"
         >
         </script>
-        <script src="/live_monaco_editor/main.cdn.js">
+        <script src="/live_monaco_editor/live_monaco_editor.js">
         </script>
         <script>
+          window.addEventListener("lme:editor_mounted", (ev) => {
+            const hook = ev.detail.hook
+            const editor = ev.detail.editor.standalone_code_editor
+
+            editor.onDidBlurEditorWidget(() => {
+              console.log(editor.getValue())
+            })
+          })
+
           let Hooks = {CodeEditorHook: window.LiveMonacoEditor.CodeEditorHook}
           let csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content");
           let liveSocket = new window.LiveView.LiveSocket("/live", window.Phoenix.Socket, { hooks: Hooks, params: {_csrf_token: csrfToken} })
@@ -86,8 +87,28 @@ defmodule Sample.EditorLive do
 
     ~H"""
     <h1>Default Options</h1>
-    <LiveMonacoEditor.code_editor value={@value} />
+    <button phx-click="html">HTML</button>
+    <button phx-click="markdown">Markdown</button>
+    <LiveMonacoEditor.code_editor value={@value} style="height: 100%; width: 100%; min-height: 100px; min-width: 200px; margin-top: 50px" />
     """
+  end
+
+  def handle_event("markdown", _params, socket) do
+    {:noreply,
+     socket
+     |> LiveMonacoEditor.change_language("markdown")
+     |> LiveMonacoEditor.set_value(~S"""
+     # Title
+
+     new content
+     """)}
+  end
+
+  def handle_event("html", _params, socket) do
+    {:noreply,
+     socket
+     |> LiveMonacoEditor.change_language("html")
+     |> LiveMonacoEditor.set_value("<h1>new value</h1>")}
   end
 end
 
@@ -123,7 +144,7 @@ defmodule Sample.Endpoint do
 
   plug Plug.Static,
     at: "/live_monaco_editor",
-    from: {:live_monaco_editor, "priv/static/dev"}
+    from: {:live_monaco_editor, "priv/static"}
 
   plug Phoenix.LiveReloader
   plug Phoenix.CodeReloader
