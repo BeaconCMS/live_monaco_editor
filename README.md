@@ -14,32 +14,16 @@ def deps do
 end
 ```
 
-Once installed, we need to import and serve the assets. Change your `assets/css/app.css` to import the editor CSS:
-
-```css
-@import "../../deps/live_monaco_editor/priv/static/main"
-```
-
-Also change your `assets/js/app.js` to load the code editor hook in the live socket:
+Once installed, change your `assets/js/app.js` to load the code editor hook in the live socket:
 
 ```js
-import { CodeEditorHook } from "../../deps/live_monaco_editor/priv/static/main"
+import { CodeEditorHook } from "../../deps/live_monaco_editor/priv/static/live_monaco_editor.esm"
 
 let Hooks = {}
 Hooks.CodeEditorHook = CodeEditorHook
 
 let liveSocket = new LiveSocket("/live", Socket, { hooks: Hooks, params: { _csrf_token: csrfToken } })
 ```
-
-And finally change `lib/my_app/endpoint.ex` to add the plug static to serve the assets:
-
-```elixir
-plug Plug.Static,
-  at: "/live_monaco_editor",
-  from: {:live_monaco_editor, "priv/static"}
-```
-
-Note that the prefix has to be `/live_monaco_editor`.
 
 ## Usage
 

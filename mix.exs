@@ -20,8 +20,9 @@ defmodule LiveMonacoEditor.MixProject do
 
   defp deps do
     [
+      {:esbuild, "~> 0.6", runtime: Mix.env() == :dev},
       {:phoenix, "~> 1.7"},
-      {:phoenix_live_view, "~> 0.18.18"},
+      {:phoenix_live_view, "~> 0.18"},
       {:phoenix_live_reload, "~> 1.4", only: :dev},
       {:plug_cowboy, "~> 2.6", only: :dev},
       {:jason, "~> 1.4"}
@@ -34,8 +35,8 @@ defmodule LiveMonacoEditor.MixProject do
       setup: ["deps.get", "assets.setup"],
       format: ["format", "cmd npm run format --prefix ./assets"],
       "assets.setup": ["cmd --cd assets npm install"],
-      "assets.build.dev": ["cmd --cd assets npm run build.dev"],
-      "assets.build.prod": ["cmd --cd assets npm run build.prod"]
+      "assets.build": ["esbuild module", "esbuild main", "esbuild cdn", "esbuild cdn_min"],
+      "assets.watch": ["esbuild module --watch"]
     ]
   end
 end
