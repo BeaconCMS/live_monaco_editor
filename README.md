@@ -49,6 +49,17 @@ A new editor using the default options can be created as:
 <LiveMonacoEditor.code_editor value="# My Code Editor" />
 ```
 
+## Local Development
+
+The file `dev.exs` is a self-contained Phoenix application running LiveMonacoEditor. Execute:
+
+```sh
+mix setup
+iex -S mix dev
+```
+
+Visit http://localhost:4002
+
 ## Features
 
 ### Change editor options

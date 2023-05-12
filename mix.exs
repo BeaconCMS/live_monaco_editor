@@ -30,12 +30,12 @@ defmodule LiveMonacoEditor.MixProject do
 
   defp aliases do
     [
+      dev: "run --no-halt dev.exs",
       setup: ["deps.get", "assets.setup"],
       format: ["format", "cmd npm run format --prefix ./assets"],
       "assets.setup": ["cmd --cd assets npm install"],
-      "assets.build": ["cmd --cd assets npm run build"],
-      "assets.build.watch": ["cmd --cd assets npm run build.watch"],
-      "assets.deploy": ["cmd --cd assets npm run deploy"]
+      "assets.build.dev": ["cmd --cd assets npm run build.dev"],
+      "assets.build.prod": ["cmd --cd assets npm run build.prod"]
     ]
   end
 end
