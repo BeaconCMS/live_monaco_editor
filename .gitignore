@@ -27,3 +27,6 @@ live_monaco_editor-*.tar
 
 # JS deps
 /assets/node_modules/
+
+# Dev assets
+/priv/static/dev/
