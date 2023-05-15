@@ -31,13 +31,13 @@ class CodeEditor {
 
   dispose() {
     if (this.isMounted()) {
-      this.standalone_code_editor.dispose()
-
       const model = this.standalone_code_editor.getModel()
 
       if (model) {
         model.dispose()
       }
+
+      this.standalone_code_editor.dispose()
     }
   }
 
