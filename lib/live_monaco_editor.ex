@@ -6,7 +6,7 @@ defmodule LiveMonacoEditor do
 
   @default_opts %{
     "language" => "markdown",
-    "fontSize" => 14,
+    "fontSize" => 12,
     "automaticLayout" => true,
     "minimap" => %{
       "enabled" => false
