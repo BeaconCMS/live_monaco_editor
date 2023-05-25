@@ -1,6 +1,14 @@
 defmodule LiveMonacoEditor do
+  @external_resource "README.md"
+
+  @moduledoc "README.md"
+             |> File.read!()
+             |> String.split("<!-- MDOC -->")
+             |> Enum.fetch!(1)
+
   use Phoenix.Component
   import Phoenix.LiveView, only: [push_event: 3]
+  alias Phoenix.LiveView.Socket
 
   @default_path "file"
 
@@ -21,16 +29,38 @@ defmodule LiveMonacoEditor do
     "suggestSelection" => "first"
   }
 
+  @doc """
+  Renders a monaco editor [model](https://microsoft.github.io/monaco-editor/docs.html#functions/editor.createModel.html).
+
+
+  ## Examples
+
+  Render a simple editor using default options:
+
+      <LiveMonacoEditor.code_editor value="# My Code Editor" />
+
+  Or merge with custom options:
+
+      <LiveMonacoEditor.code_editor
+        opts={
+          Map.merge(
+            LiveMonacoEditor.default_opts(),
+            %{"wordWrap" => "on"}
+          )
+        }
+      />
+
+  """
   attr :path, :string,
     default: @default_path,
-    doc: "file identifier, define unique names to create multiple editors"
+    doc: "file identifier, pass unique names to render multiple editors"
 
   attr :value, :string, default: "", doc: "initial content"
 
   attr :opts, :map,
     default: @default_opts,
     doc: """
-    options for the monaco editor instance. Defaults to LiveMonacoEditor.default_opts()
+    options for the monaco editor instance
 
     ## Example
 
@@ -71,10 +101,7 @@ defmodule LiveMonacoEditor do
   end
 
   @doc """
-  Default Monacto Editor options:
-
-    #{inspect(@default_opts)}
-
+  The default Monaco Editor opts passed to `<.code_editor>`
   """
   def default_opts, do: @default_opts
 
@@ -94,8 +121,19 @@ defmodule LiveMonacoEditor do
   end
 
   @doc """
-  https://microsoft.github.io/monaco-editor/docs.html#functions/editor.setModelLanguage.html
+  Change the editor's language.
+
+  ## Examples
+
+      LiveMonacoEditor.change_language(socket, "markdown", to: "my_file.md")
+
+  ## Options
+
+    * `:to` - the editor's `path` name that will get the language changed. Defaults to "#{@default_path}".
+
+  See https://microsoft.github.io/monaco-editor/docs.html#functions/editor.setModelLanguage.html for more info.
   """
+  @spec change_language(Socket.t(), String.t(), keyword()) :: Socket.t()
   def change_language(socket, mime_type_or_language_id, opts \\ [])
       when is_binary(mime_type_or_language_id) do
     to = Keyword.get(opts, :to, @default_path)
@@ -106,8 +144,19 @@ defmodule LiveMonacoEditor do
   end
 
   @doc """
-  https://microsoft.github.io/monaco-editor/docs.html#interfaces/editor.IStandaloneCodeEditor.html#setValue
+  Change the editor's `value` (content).
+
+  ## Examples
+
+      LiveMonacoEditor.set_value(socket, "Enum.all?([1, 2, 3])", to: "my_script.exs")
+
+  ## Options
+
+    * `:to` - the editor's `path` name that will get the value updated. Defaults to "#{@default_path}".
+
+  See https://microsoft.github.io/monaco-editor/docs.html#interfaces/editor.IStandaloneCodeEditor.html#setValue for more info.
   """
+  @spec set_value(Socket.t(), String.t(), keyword()) :: Socket.t()
   def set_value(socket, value, opts \\ []) when is_binary(value) do
     to = Keyword.get(opts, :to, @default_path)
     push_event(socket, "lme:set_value:#{to}", %{"value" => value})

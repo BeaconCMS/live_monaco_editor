@@ -1,5 +1,10 @@
 # LiveMonacoEditor
 
+[![Documentation](http://img.shields.io/badge/hex.pm-docs-green.svg?style=flat)](https://hexdocs.pm/live_monaco_editor)
+[![Package](https://img.shields.io/hexpm/v/live_monaco_editor.svg)](https://hex.pm/packages/live_monaco_editor)
+
+<!-- MDOC -->
+
 [Monaco Editor](https://microsoft.github.io/monaco-editor/) component for Phoenix LiveView.
 
 ## Installation
@@ -9,14 +14,14 @@ Add `:live_monaco_editor` dependency:
 ```elixir
 def deps do
   [
-    {:live_monaco_editor, github: "BeaconCMS/live_monaco_editor"}
+    {:live_monaco_editor, "~> 0.1"}
   ]
 end
 ```
 
 Once installed, change your `assets/js/app.js` to load the code editor hook in the live socket:
 
-```js
+```javascript
 import { CodeEditorHook } from "../../deps/live_monaco_editor/priv/static/live_monaco_editor.esm"
 
 let Hooks = {}
@@ -32,17 +37,6 @@ A new editor using the default options can be created as:
 ```heex
 <LiveMonacoEditor.code_editor value="# My Code Editor" />
 ```
-
-## Local Development
-
-The file `dev.exs` is a self-contained Phoenix application running LiveMonacoEditor. Execute:
-
-```sh
-mix setup
-iex -S mix dev
-```
-
-Visit http://localhost:4002
 
 ## Features
 
@@ -88,7 +82,7 @@ You can listen to events emitted by the code editor to fetch its current value a
 ```javascript
 window.addEventListener("lme:editor_mounted", (ev) => {
   const hook = ev.detail.hook
-  
+
   // https://microsoft.github.io/monaco-editor/docs.html#interfaces/editor.IStandaloneCodeEditor.html
   const editor = ev.detail.editor.standalone_code_editor
 
@@ -149,11 +143,11 @@ _Note that only adding new content into the editor will trigger this event. For 
 ### Change language and value
 
 ```heex
-<button phx-click="change-file">my_file.html</button>
+<button phx-click="create-file">my_file.html</button>
 ```
 
 ```elixir
-def handle_event("change-file", _params, socket) do
+def handle_event("create-file", _params, socket) do
   {:noreply,
    socket
    |> LiveMonacoEditor.change_language("html")
@@ -176,7 +170,18 @@ The component does not depend on any CSS framework but its parent container has 
 
 ## Status
 
-Experimental. You can expect incomplete features and breaking changes before a stable v0.1.0 is released.
+Early-stage, you can expect incomplete features and breaking changes.
+
+## Contributing
+
+You can use the file `dev.exs` which is a self-contained Phoenix application running LiveMonacoEditor. Execute:
+
+```sh
+mix setup
+iex -S mix dev
+```
+
+Visit http://localhost:4002
 
 ## Acknowledgements
 

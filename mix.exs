@@ -1,14 +1,22 @@
 defmodule LiveMonacoEditor.MixProject do
   use Mix.Project
 
+  @source_url "https://github.com/BeaconCMS/live_monaco_editor"
+  @version "0.1.0"
+
   def project do
     [
       app: :live_monaco_editor,
       version: "0.1.0",
-      elixir: "~> 1.14",
+      elixir: "~> 1.12",
       start_permanent: Mix.env() == :prod,
+      package: package(),
+      docs: docs(),
+      deps: deps(),
       aliases: aliases(),
-      deps: deps()
+      name: "LiveMonacoEditor",
+      homepage_url: "https://github.com/BeaconCMS/live_monaco_editor",
+      description: "Monaco Editor component for Phoenix LiveView"
     ]
   end
 
@@ -18,14 +26,45 @@ defmodule LiveMonacoEditor.MixProject do
     ]
   end
 
+  defp package do
+    [
+      maintainers: ["Leandro Pereira"],
+      licenses: ["MIT"],
+      links: %{
+        Changelog: "https://hexdocs.pm/live_monaco_editor/changelog.html",
+        GitHub: @source_url
+      },
+      files: [
+        "mix.exs",
+        "lib",
+        "assets/package.json",
+        "assets/js",
+        "priv",
+        "README.md",
+        "LICENSE.md",
+        "CHANGELOG.md"
+      ]
+    ]
+  end
+
+  defp docs do
+    [
+      main: "LiveMonacoEditor",
+      source_ref: "v#{@version}",
+      source_url: @source_url,
+      extras: ["CHANGELOG.md"]
+    ]
+  end
+
   defp deps do
     [
       {:esbuild, "~> 0.6", runtime: Mix.env() == :dev},
+      {:ex_doc, "~> 0.29", only: :dev},
+      {:jason, "~> 1.4"},
       {:phoenix, "~> 1.7"},
       {:phoenix_live_view, "~> 0.18"},
       {:phoenix_live_reload, "~> 1.4", only: :dev},
-      {:plug_cowboy, "~> 2.6", only: :dev},
-      {:jason, "~> 1.4"}
+      {:plug_cowboy, "~> 2.6", only: :dev}
     ]
   end
 
@@ -33,7 +72,7 @@ defmodule LiveMonacoEditor.MixProject do
     [
       dev: "run --no-halt dev.exs",
       setup: ["deps.get", "assets.setup"],
-      format: ["format", "cmd npm run format --prefix ./assets"],
+      "format.all": ["format", "cmd npm run format --prefix ./assets"],
       "assets.setup": ["cmd --cd assets npm install"],
       "assets.build": ["esbuild module", "esbuild main", "esbuild cdn", "esbuild cdn_min"],
       "assets.watch": ["esbuild module --watch"]
