@@ -58,7 +58,7 @@ defmodule LiveMonacoEditor.MixProject do
 
   defp deps do
     [
-      {:esbuild, "~> 0.6", runtime: Mix.env() == :dev},
+      {:esbuild, "~> 0.5", only: :dev},
       {:ex_doc, "~> 0.29", only: :dev},
       {:jason, "~> 1.4"},
       {:phoenix, "~> 1.7"},
