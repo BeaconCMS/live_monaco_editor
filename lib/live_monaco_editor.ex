@@ -13,6 +13,7 @@ defmodule LiveMonacoEditor do
   @default_path "file"
 
   @default_opts %{
+    "theme" => "vs-dark",
     "language" => "markdown",
     "fontSize" => 12,
     "automaticLayout" => true,
