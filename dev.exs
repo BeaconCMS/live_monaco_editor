@@ -127,6 +127,29 @@ defmodule Sample.EditorLive do
         )
       }
     />
+
+    <h1>HTML</h1>
+    <LiveMonacoEditor.code_editor
+      id="html"
+      path="html"
+      style="min-height: 250px; width: 100%;"
+      value={~S|
+      <div class="space-y-5">
+        <div class="p-3 bg-white shadow rounded-lg">
+          <h3 class="text-xs border-b">font-sans</h3>
+          <p class="font-sans">
+            The quick brown fox jumps over the lazy dog.
+          </p>
+        </div>
+      </div>
+      |}
+      opts={
+        Map.merge(
+          LiveMonacoEditor.default_opts(),
+          %{"language" => "html"}
+        )
+      }
+    />
     """
   end
 
