@@ -46,6 +46,7 @@ defmodule Sample.EditorLive do
     <html>
       <head>
         <meta name="csrf-token" content={Plug.CSRFProtection.get_csrf_token()} />
+        <link rel="stylesheet" href="/live_monaco_editor/live_monaco_editor.css" />
         <script src="https://cdn.jsdelivr.net/npm/phoenix@1.7.2/priv/static/phoenix.min.js">
         </script>
         <script

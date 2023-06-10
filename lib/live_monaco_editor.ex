@@ -14,6 +14,7 @@ defmodule LiveMonacoEditor do
 
   @default_opts %{
     "theme" => "vs-dark",
+    "fontFamily" => "JetBrains Mono, monospace",
     "language" => "markdown",
     "fontSize" => 12,
     "automaticLayout" => true,
