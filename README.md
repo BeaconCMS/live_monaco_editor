@@ -19,7 +19,7 @@ def deps do
 end
 ```
 
-Once installed, change your `assets/js/app.js` to load the code editor hook in the live socket:
+Once installed, change your `assets/js/app.js` file to load the code editor hook in the live socket:
 
 ```javascript
 import { CodeEditorHook } from "../../deps/live_monaco_editor/priv/static/live_monaco_editor.esm"
@@ -28,6 +28,12 @@ let Hooks = {}
 Hooks.CodeEditorHook = CodeEditorHook
 
 let liveSocket = new LiveSocket("/live", Socket, { hooks: Hooks, params: { _csrf_token: csrfToken } })
+```
+
+And change your `assets/css/app.css` file to load styling:
+
+```css
+@import "../../deps/live_monaco_editor/priv/static/live_monaco_editor.min.css";
 ```
 
 ## Usage

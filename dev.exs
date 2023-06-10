@@ -46,6 +46,7 @@ defmodule Sample.EditorLive do
     <html>
       <head>
         <meta name="csrf-token" content={Plug.CSRFProtection.get_csrf_token()} />
+        <link rel="stylesheet" href="/live_monaco_editor/live_monaco_editor.css" />
         <script src="https://cdn.jsdelivr.net/npm/phoenix@1.7.2/priv/static/phoenix.min.js">
         </script>
         <script
@@ -119,7 +120,7 @@ defmodule Sample.EditorLive do
     <LiveMonacoEditor.code_editor
       id="elixir"
       path="elixir"
-      style="min-height: 210px; width: 100%;"
+      style="min-height: 250px; width: 100%;"
       value={@elixir}
       opts={
         Map.merge(
