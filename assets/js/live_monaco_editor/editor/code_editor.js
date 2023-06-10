@@ -1,6 +1,7 @@
 // https://github.com/livebook-dev/livebook/blob/8532bc334bdcf3c57fab9b694666e609877d279f/assets/js/hooks/cell_editor/live_editor.js
 
 import loader from "@monaco-editor/loader"
+import { theme } from "./themes"
 
 class CodeEditor {
   constructor(el, path, value, opts) {
@@ -45,6 +46,8 @@ class CodeEditor {
     this.opts.value = this.value
 
     loader.init().then((monaco) => {
+      monaco.editor.defineTheme("default", theme)
+
       let modelUri = monaco.Uri.parse(this.path)
       let language = this.opts.language
       let model = monaco.editor.createModel(this.value, language, modelUri)

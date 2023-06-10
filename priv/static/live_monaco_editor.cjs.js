@@ -549,6 +549,76 @@ var loader = {
 };
 var loader_default = loader;
 
+// js/live_monaco_editor/editor/themes.js
+var colors = {
+  background: "#282c34",
+  default: "#c4cad6",
+  lightRed: "#e06c75",
+  blue: "#61afef",
+  gray: "#8c92a3",
+  green: "#98c379",
+  purple: "#c678dd",
+  red: "#be5046",
+  teal: "#56b6c2",
+  peach: "#d19a66"
+};
+var rules = (colors2) => [
+  { token: "", foreground: colors2.default },
+  { token: "variable", foreground: colors2.lightRed },
+  { token: "constant", foreground: colors2.blue },
+  { token: "constant.character.escape", foreground: colors2.blue },
+  { token: "comment", foreground: colors2.gray },
+  { token: "number", foreground: colors2.blue },
+  { token: "regexp", foreground: colors2.lightRed },
+  { token: "type", foreground: colors2.lightRed },
+  { token: "string", foreground: colors2.green },
+  { token: "keyword", foreground: colors2.purple },
+  { token: "operator", foreground: colors2.peach },
+  { token: "delimiter.bracket.embed", foreground: colors2.red },
+  { token: "sigil", foreground: colors2.teal },
+  { token: "function", foreground: colors2.blue },
+  { token: "function.call", foreground: colors2.default },
+  // Markdown specific
+  { token: "emphasis", fontStyle: "italic" },
+  { token: "strong", fontStyle: "bold" },
+  { token: "keyword.md", foreground: colors2.lightRed },
+  { token: "keyword.table", foreground: colors2.lightRed },
+  { token: "string.link.md", foreground: colors2.blue },
+  { token: "variable.md", foreground: colors2.teal },
+  { token: "string.md", foreground: colors2.default },
+  { token: "variable.source.md", foreground: colors2.default },
+  // XML specific
+  { token: "tag", foreground: colors2.lightRed },
+  { token: "metatag", foreground: colors2.lightRed },
+  { token: "attribute.name", foreground: colors2.peach },
+  { token: "attribute.value", foreground: colors2.green },
+  // JSON specific
+  { token: "string.key", foreground: colors2.lightRed },
+  { token: "keyword.json", foreground: colors2.blue },
+  // SQL specific
+  { token: "operator.sql", foreground: colors2.purple }
+];
+var theme = {
+  base: "vs-dark",
+  inherit: false,
+  rules: rules(colors),
+  colors: {
+    "editor.background": colors.background,
+    "editor.foreground": colors.default,
+    "editorLineNumber.foreground": "#636d83",
+    "editorCursor.foreground": "#636d83",
+    "editor.selectionBackground": "#3e4451",
+    "editor.findMatchHighlightBackground": "#528bff3d",
+    "editorSuggestWidget.background": "#21252b",
+    "editorSuggestWidget.border": "#181a1f",
+    "editorSuggestWidget.selectedBackground": "#2c313a",
+    "input.background": "#1b1d23",
+    "input.border": "#181a1f",
+    "editorBracketMatch.border": "#282c34",
+    "editorBracketMatch.background": "#3e4451"
+  }
+};
+
 // js/live_monaco_editor/editor/code_editor.js
 var CodeEditor = class {
   constructor(el, path, value, opts) {
@@ -583,6 +653,7 @@ var CodeEditor = class {
   _mountEditor() {
     this.opts.value = this.value;
     loader_default.init().then((monaco) => {
+      monaco.editor.defineTheme("default", theme);
       let modelUri = monaco.Uri.parse(this.path);
       let language = this.opts.language;
       let model = monaco.editor.createModel(this.value, language, modelUri);
