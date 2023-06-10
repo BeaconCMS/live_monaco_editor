@@ -13,7 +13,7 @@ defmodule LiveMonacoEditor do
   @default_path "file"
 
   @default_opts %{
-    "theme" => "vs-dark",
+    "theme" => "default",
     "fontFamily" => "JetBrains Mono, monospace",
     "language" => "markdown",
     "fontSize" => 12,
