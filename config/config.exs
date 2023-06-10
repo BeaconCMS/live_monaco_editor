@@ -12,9 +12,9 @@ if Mix.env() == :dev do
         ~w(
         ./js/live_monaco_editor
         --bundle
-        --loader:.ttf=file
-        --loader:.woff=file
-        --loader:.woff2=file
+        --loader:.ttf=dataurl
+        --loader:.woff=dataurl
+        --loader:.woff2=dataurl
         --sourcemap
       ) ++
           args,

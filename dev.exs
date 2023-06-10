@@ -120,7 +120,7 @@ defmodule Sample.EditorLive do
     <LiveMonacoEditor.code_editor
       id="elixir"
       path="elixir"
-      style="min-height: 210px; width: 100%;"
+      style="min-height: 250px; width: 100%;"
       value={@elixir}
       opts={
         Map.merge(
