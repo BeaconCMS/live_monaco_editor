@@ -44,6 +44,35 @@ A new editor using the default options can be created as:
 <LiveMonacoEditor.code_editor value="# My Code Editor" />
 ```
 
+Or you can customize it:
+
+```heex
+<LiveMonacoEditor.code_editor
+  style="min-height: 250px; width: 100%;"
+  value={~S{
+  defmodule Math do
+    def sum_list([head | tail], accumulator) do
+      sum_list(tail, head + accumulator)
+    end
+
+    def sum_list([], accumulator) do
+      accumulator
+    end
+  end
+
+  IO.puts Math.sum_list([1, 2, 3], 0)
+  }}
+  opts={
+    Map.merge(
+      LiveMonacoEditor.default_opts(),
+      %{"language" => "elixir"}
+    )
+  }
+/>
+```
+
+![Elixir](https://raw.github.com/BeaconCMS/live_monaco_editor/main/assets/elixir.png)
+
 ## Features
 
 ### Set editor options

@@ -82,24 +82,10 @@ defmodule Sample.EditorLive do
 
   def render(assigns) do
     assigns =
-      assigns
-      |> assign(:value, ~S"""
+      assign(assigns, :value, ~S"""
       # My Code Editor
 
       From LiveMonacoEditor.code_editor component
-      """)
-      |> assign(:elixir, ~S"""
-      defmodule Math do
-        def sum_list([head | tail], accumulator) do
-          sum_list(tail, head + accumulator)
-        end
-
-        def sum_list([], accumulator) do
-          accumulator
-        end
-      end
-
-      IO.puts Math.sum_list([1, 2, 3], 0) #=> 6
       """)
 
     ~H"""
@@ -121,7 +107,19 @@ defmodule Sample.EditorLive do
       id="elixir"
       path="elixir"
       style="min-height: 250px; width: 100%;"
-      value={@elixir}
+      value={~S{
+      defmodule Math do
+        def sum_list([head | tail], accumulator) do
+          sum_list(tail, head + accumulator)
+        end
+
+        def sum_list([], accumulator) do
+          accumulator
+        end
+      end
+
+      IO.puts Math.sum_list([1, 2, 3], 0)
+      }}
       opts={
         Map.merge(
           LiveMonacoEditor.default_opts(),
