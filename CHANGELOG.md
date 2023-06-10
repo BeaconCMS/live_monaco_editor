@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.1.2 (2023-06-10)
+
+### Enhancements
+  * Load JetBrains Mono font by default
+  * Load OneDark theme by default
+
+### Bug fixes
+  * Remove unnecessary parent `<div>` element
+
 ## 0.1.1 (2023-06-08)
 
 ### Enhancements
