@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.3 (2023-06-28)
+
+### Bug fixes
+  * DOM patch conflict causing the editor to stop receiving some keystrokes
+
 ## 0.1.2 (2023-06-10)
 
 ### Enhancements
