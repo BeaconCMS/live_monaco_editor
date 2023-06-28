@@ -87,16 +87,17 @@ defmodule LiveMonacoEditor do
     assigns = assign(assigns, :opts, opts)
 
     ~H"""
-    <div
-      id={"lme-code-#{random_id()}"}
-      style={@style}
-      phx-update="ignore"
-      phx-hook="CodeEditorHook"
-      data-path={@path}
-      data-value={@value}
-      data-opts={@opts}
-      {@rest}
-    >
+    <div id={"lme-wrapper-code-#{random_id()}"} phx-update="ignore">
+      <div
+        id={"lme-code-#{random_id()}"}
+        style={@style}
+        phx-hook="CodeEditorHook"
+        data-path={@path}
+        data-value={@value}
+        data-opts={@opts}
+        {@rest}
+      >
+      </div>
     </div>
     """
   end
