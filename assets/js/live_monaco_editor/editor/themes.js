@@ -1,4 +1,6 @@
-// https://github.com/livebook-dev/livebook/blob/23e58ac604de92ce54472f36fe3e28dc27576d6c/assets/js/hooks/cell_editor/live_editor/theme.js
+// Copied and modified from the original work available at https://github.com/livebook-dev/livebook/blob/23e58ac604de92ce54472f36fe3e28dc27576d6c/assets/js/hooks/cell_editor/live_editor/theme.js
+// Copyright (C) 2021 Dashbit
+// Licensed under Apache 2.0 available at https://www.apache.org/licenses/LICENSE-2.0
 
 // This is a port of the One Dark theme to the Monaco editor.
 // We color graded the comment so it has AA accessibility and

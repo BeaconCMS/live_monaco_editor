@@ -1,4 +1,6 @@
-// https://github.com/livebook-dev/livebook/blob/8532bc334bdcf3c57fab9b694666e609877d279f/assets/js/hooks/cell_editor/live_editor.js
+// Copied and modified from the original work available at https://github.com/livebook-dev/livebook/blob/8532bc334bdcf3c57fab9b694666e609877d279f/assets/js/hooks/cell_editor/live_editor.js
+// Copyright (C) 2021 Dashbit
+// Licensed under Apache 2.0 available at https://www.apache.org/licenses/LICENSE-2.0
 
 import loader from "@monaco-editor/loader"
 import { theme } from "./themes"
