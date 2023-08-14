@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.4 (2023-08-14)
+
+### Bug fixes
+  * add `display: contents` to wrapper div - [lukad](https://github.com/lukad)
+
 ## 0.1.3 (2023-06-28)
 
 ### Bug fixes
