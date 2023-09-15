@@ -47,6 +47,10 @@ class CodeEditor {
   _mountEditor() {
     this.opts.value = this.value
 
+    loader.config({
+      paths: { vs: "https://cdn.jsdelivr.net/npm/monaco-editor@latest/min/vs" },
+    })
+
     loader.init().then((monaco) => {
       monaco.editor.defineTheme("default", theme)
 

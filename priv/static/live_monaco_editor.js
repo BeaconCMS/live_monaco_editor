@@ -652,6 +652,9 @@ var LiveMonacoEditor = (() => {
     }
     _mountEditor() {
       this.opts.value = this.value;
+      loader_default.config({
+        paths: { vs: "https://cdn.jsdelivr.net/npm/monaco-editor@latest/min/vs" }
+      });
       loader_default.init().then((monaco) => {
         monaco.editor.defineTheme("default", theme);
         let modelUri = monaco.Uri.parse(this.path);
