@@ -13,22 +13,35 @@ defmodule LiveMonacoEditor do
   @default_path "file"
 
   @default_opts %{
-    "theme" => "default",
-    "fontFamily" => "JetBrains Mono, monospace",
+    # editor
     "language" => "markdown",
-    "fontSize" => 14,
-    "automaticLayout" => true,
-    "minimap" => %{
-      "enabled" => false
-    },
-    "scrollBeyondLastLine" => false,
-    "occurrencesHighlight" => false,
-    "renderLineHighlight" => "none",
     "tabSize" => 2,
     "formatOnType" => true,
     "formatOnPaste" => true,
-    "tabCompletion" => "on",
-    "suggestSelection" => "first"
+    "tabIndex" => -1,
+    # visual
+    "theme" => "default",
+    "fontFamily" => "JetBrains Mono, monospace",
+    "fontSize" => 14,
+    "guides" => %{
+      "indentation" => false
+    },
+    "occurrencesHighlight" => false,
+    "minimap" => %{
+      "enabled" => false
+    },
+    # behavior
+    "scrollbar" => %{
+      "alwaysConsumeMouseWheel" => false
+    },
+    "scrollBeyondLastLine" => false,
+    # auto complete
+    "renderLineHighlight" => "none",
+    "suggestSelection" => "first",
+    "parameterHints" => true,
+    # TODO: enable with intellisense implementation
+    # "wordBasedSuggestions" => !this.intellisense,
+    "tabCompletion" => "on"
   }
 
   @doc """
