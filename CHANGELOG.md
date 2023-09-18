@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.1.6-dev
+## 0.1.6 (2023-09-18)
 
 ### Enhancements
   * Auto resize editor on content or viewport change
