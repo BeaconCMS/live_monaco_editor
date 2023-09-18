@@ -63,7 +63,46 @@ class CodeEditor {
       this.standalone_code_editor = monaco.editor.create(this.el, this.opts)
 
       this._onMount.forEach((callback) => callback(monaco))
+
+      this._setScreenDependantEditorOptions()
+
+      const resizeObserver = new ResizeObserver((entries) => {
+        console.log("resizeObserver")
+        entries.forEach(() => {
+          if (this.el.offsetHeight > 0) {
+            this._setScreenDependantEditorOptions()
+            this.standalone_code_editor.layout()
+          }
+        })
+      })
+
+      resizeObserver.observe(this.el)
+
+      this.standalone_code_editor.onDidContentSizeChange(() => {
+        console.log("onDidContentSizeChanges")
+        const contentHeight = this.standalone_code_editor.getContentHeight()
+        this.el.style.height = `${contentHeight}px`
+      })
     })
+  }
+
+  _setScreenDependantEditorOptions() {
+    if (window.screen.width < 768) {
+      this.standalone_code_editor.updateOptions({
+        folding: false,
+        lineDecorationsWidth: 16,
+        lineNumbersMinChars:
+          Math.floor(
+            Math.log10(this.standalone_code_editor.getModel().getLineCount())
+          ) + 3,
+      })
+    } else {
+      this.standalone_code_editor.updateOptions({
+        folding: true,
+        lineDecorationsWidth: 10,
+        lineNumbersMinChars: 5,
+      })
+    }
   }
 }
 
