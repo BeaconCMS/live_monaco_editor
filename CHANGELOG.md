@@ -2,6 +2,10 @@
 
 ## 0.1.6-dev
 
+### Enhancements
+  * Auto resize editor on content or viewport change
+  * Change default options to improve default look & feel
+
 ## 0.1.5 (2023-09-15)
 
 ### Enhancements
