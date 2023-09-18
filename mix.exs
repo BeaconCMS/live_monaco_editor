@@ -2,7 +2,7 @@ defmodule LiveMonacoEditor.MixProject do
   use Mix.Project
 
   @source_url "https://github.com/BeaconCMS/live_monaco_editor"
-  @version "0.1.5"
+  @version "0.1.6-dev"
 
   def project do
     [
