@@ -1,11 +1,33 @@
 # LiveMonacoEditor
 
-[![Documentation](http://img.shields.io/badge/hex.pm-docs-green.svg?style=flat)](https://hexdocs.pm/live_monaco_editor)
-[![Package](https://img.shields.io/hexpm/v/live_monaco_editor.svg)](https://hex.pm/packages/live_monaco_editor)
-
 <!-- MDOC -->
 
-[Monaco Editor](https://microsoft.github.io/monaco-editor/) component for Phoenix LiveView.
+<p align="center">
+  <img src="assets/images/live_monaco_editor_logo.png" width="512" alt="LiveMonacoEditor logo">
+</p>
+
+<p align="center">
+  [Monaco Editor](https://microsoft.github.io/monaco-editor/) component for Phoenix LiveView.
+</p>
+
+<p align="center">
+  <a href="https://hex.pm/packages/live_monaco_editor">
+    <img alt="Hex Version" src="https://img.shields.io/hexpm/v/live_monaco_editor">
+  </a>
+
+  <a href="https://hexdocs.pm/live_monaco_editor">
+    <img alt="Hex Docs" src="http://img.shields.io/badge/hex.pm-docs-green.svg?style=flat">
+  </a>
+
+  <a href="https://opensource.org/licenses/MIT">
+    <img alt="MIT" src="https://img.shields.io/hexpm/l/live_monaco_editor">
+  </a>
+</p>
+
+## Features
+
+- Easily instantiate single or multpiple editors
+- [Lazy load](https://github.com/suren-atoyan/monaco-loader) assets
 
 ## Installation
 
@@ -229,4 +251,7 @@ Have a project in mind? [Get in touch](https://dockyard.com/contact/hire-us)!
 
 ## Acknowledgements
 
-[Jonatan Kłosko](https://github.com/jonatanklosko) for his amazing work with [Livebook Editor](https://github.com/livebook-dev/livebook/blob/main/assets/js/hooks/cell_editor.js)
+* [Jonatan Kłosko](https://github.com/jonatanklosko) for his amazing work with [Livebook Editor](https://github.com/livebook-dev/livebook/blob/main/assets/js/hooks/cell_editor.js)
+* [Logo](https://www.flaticon.com/free-icons/script) created by kerismaker - Flaticon
+* [Logo font](https://fonts.google.com/specimen/Source+Code+Pro) designed by Paul D. hunt
+
