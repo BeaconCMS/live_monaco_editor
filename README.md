@@ -218,6 +218,15 @@ iex -S mix dev
 
 Visit http://localhost:4002
 
+## Looking for help with your Elixir project?
+
+<img src="assets/images/dockyard_logo.png" width="256" alt="DockYard logo">
+
+At DockYard we are [ready to help you build your next Elixir project](https://dockyard.com/phoenix-consulting).
+We have a unique expertise in Elixir and Phoenix development that is unmatched and we love to [write about Elixir](https://dockyard.com/blog/categories/elixir).
+
+Have a project in mind? [Get in touch](https://dockyard.com/contact/hire-us)!
+
 ## Acknowledgements
 
 [Jonatan Kłosko](https://github.com/jonatanklosko) for his amazing work with [Livebook Editor](https://github.com/livebook-dev/livebook/blob/main/assets/js/hooks/cell_editor.js)
