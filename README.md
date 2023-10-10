@@ -7,7 +7,7 @@
 </p>
 
 <p align="center">
-  [Monaco Editor](https://microsoft.github.io/monaco-editor/) component for Phoenix LiveView.
+  <a href="https://microsoft.github.io/monaco-editor">Monaco Editor</a> component for Phoenix LiveView.
 </p>
 
 <p align="center">
@@ -26,8 +26,10 @@
 
 ## Features
 
-- Easily instantiate single or multpiple editors
 - [Lazy load](https://github.com/suren-atoyan/monaco-loader) assets
+- Easily instantiate single or multpiple editors
+- Pass any [option available](https://microsoft.github.io/monaco-editor/docs.html#interfaces/editor.IStandaloneEditorConstructionOptions.html) to the editor
+- [Interoperability](https://github.com/BeaconCMS/live_monaco_editor#interface) with the underlying editor
 
 ## Installation
 
@@ -95,7 +97,7 @@ Or you can customize it:
 
 ![Elixir](https://raw.github.com/BeaconCMS/live_monaco_editor/main/assets/elixir.png)
 
-## Features
+## Interface
 
 ### Set editor options
 
