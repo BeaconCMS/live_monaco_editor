@@ -3,7 +3,7 @@
 <!-- MDOC -->
 
 <p align="center">
-  <img src="assets/images/live_monaco_editor_logo.png" width="512" alt="LiveMonacoEditor logo">
+  <img src="https://raw.githubusercontent.com/BeaconCMS/live_monaco_editor/main/assets/images/live_monaco_editor_logo.png" width="512" alt="LiveMonacoEditor logo">
 </p>
 
 <p align="center">
@@ -27,7 +27,7 @@
 ## Features
 
 - [Lazy load](https://github.com/suren-atoyan/monaco-loader) assets
-- Easily instantiate single or multpiple editors
+- Easily instantiate [single](https://github.com/BeaconCMS/live_monaco_editor#usage) or [multpiple](https://github.com/BeaconCMS/live_monaco_editor#multiple-editors) editors
 - Pass any [option available](https://microsoft.github.io/monaco-editor/docs.html#interfaces/editor.IStandaloneEditorConstructionOptions.html) to the editor
 - [Interoperability](https://github.com/BeaconCMS/live_monaco_editor#interface) with the underlying editor
 
@@ -68,7 +68,7 @@ A new editor using the default options can be created as:
 <LiveMonacoEditor.code_editor value="# My Code Editor" />
 ```
 
-Or you can customize it:
+Or you can customize it as:
 
 ```heex
 <LiveMonacoEditor.code_editor
