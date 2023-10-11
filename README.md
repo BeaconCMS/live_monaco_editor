@@ -244,7 +244,7 @@ Visit http://localhost:4002
 
 ## Looking for help with your Elixir project?
 
-<img src="assets/images/dockyard_logo.png" width="256" alt="DockYard logo">
+<img src="https://raw.githubusercontent.com/BeaconCMS/live_monaco_editor/main/assets/images/dockyard_logo.png" width="256" alt="DockYard logo">
 
 At DockYard we are [ready to help you build your next Elixir project](https://dockyard.com/phoenix-consulting).
 We have a unique expertise in Elixir and Phoenix development that is unmatched and we love to [write about Elixir](https://dockyard.com/blog/categories/elixir).
