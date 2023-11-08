@@ -72,7 +72,10 @@ defmodule LiveMonacoEditor do
 
   attr :value, :string, default: "", doc: "initial content"
 
-  attr :change, :string, default: "", doc: "event name to capture editor content changes"
+  attr :change, :string,
+    default: "",
+    doc:
+      "event name to capture editor content changes, see https://github.com/BeaconCMS/live_monaco_editor#inside-forms for more info"
 
   attr :opts, :map,
     default: @default_opts,
