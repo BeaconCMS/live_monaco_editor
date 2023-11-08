@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.7 (2023-11-08)
+
+### Enhancements
+  * Add `:change` option to capture editor content changes
+
 ## 0.1.6 (2023-09-18)
 
 ### Enhancements
