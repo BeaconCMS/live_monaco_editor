@@ -4,6 +4,7 @@ const CodeEditorHook = {
   mounted() {
     // TODO: validate dataset
     const opts = JSON.parse(this.el.dataset.opts)
+
     this.codeEditor = new CodeEditor(
       this.el,
       this.el.dataset.path,
@@ -12,12 +13,13 @@ const CodeEditorHook = {
     )
 
     this.codeEditor.onMount((monaco) => {
-      this.el.dispatchEvent(
-        new CustomEvent("lme:editor_mounted", {
-          detail: { hook: this, editor: this.codeEditor },
-          bubbles: true,
+      if (this.el.dataset.changeEvent && this.el.dataset.changeEvent !== "") {
+        this.codeEditor.standalone_code_editor.onDidChangeModelContent(() => {
+          this.pushEvent(this.el.dataset.changeEvent, {
+            value: this.codeEditor.standalone_code_editor.getValue(),
+          })
         })
-      )
+      }
 
       this.handleEvent(
         "lme:change_language:" + this.el.dataset.path,
@@ -43,6 +45,13 @@ const CodeEditorHook = {
 
       this.el.removeAttribute("data-value")
       this.el.removeAttribute("data-opts")
+
+      this.el.dispatchEvent(
+        new CustomEvent("lme:editor_mounted", {
+          detail: { hook: this, editor: this.codeEditor },
+          bubbles: true,
+        })
+      )
     })
 
     if (!this.codeEditor.isMounted()) {

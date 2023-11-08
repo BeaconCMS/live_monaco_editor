@@ -72,6 +72,8 @@ defmodule LiveMonacoEditor do
 
   attr :value, :string, default: "", doc: "initial content"
 
+  attr :change, :string, default: "", doc: "event name to capture editor content changes"
+
   attr :opts, :map,
     default: @default_opts,
     doc: """
@@ -107,6 +109,7 @@ defmodule LiveMonacoEditor do
         phx-hook="CodeEditorHook"
         data-path={@path}
         data-value={@value}
+        data-change-event={@change}
         data-opts={@opts}
         {@rest}
       >
