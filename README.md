@@ -145,19 +145,50 @@ window.addEventListener("lme:editor_mounted", (ev) => {
   // https://microsoft.github.io/monaco-editor/docs.html#interfaces/editor.IStandaloneCodeEditor.html
   const editor = ev.detail.editor.standalone_code_editor
 
-  // push an event to the parent liveview containing the editor current value
-  // when the editor loses focus
+  // push an event to the parent liveview containing the editor current value when the editor loses focus
   editor.onDidBlurEditorWidget(() => {
     hook.pushEvent("code-editor-lost-focus", { value: editor.getValue() })
   })
 })
 ```
 
-Then you can handle that event on the LiveView to save the editor content or perform any sort of operation you need:
+Then you can handle that event on the LiveView to save the editor content or perform any kind of operation you need:
 
 ```elixir
 def handle_event("code-editor-lost-focus", %{"value" => value}, socket) do
   {:noreply, assign(socket, :source, value)}
+end
+```
+
+### Inside forms
+
+Do not rely on `phx-change` to fetch the editor content because it has known limitations due to how Monaco Editor works:
+
+- Pressing "backspace" does not trigger the change event.
+- [Only the last 10 lines](https://github.com/BeaconCMS/live_monaco_editor/issues/14) are sent in the event value.
+
+
+```heex
+<form>
+  <LiveMonacoEditor.code_editor path="my_file.html" value="<h1>Title</h1>" change="set_editor_value" />
+</form>
+```
+
+Which will trigger an event in the current LiveView process:
+
+```elixir
+def handle_event("set_editor_value", %{"value" => value}, socket) do
+  # do something with `value`
+  {:noreply, socket}
+end
+```
+
+You'll need to ignore phx-change events for the editor field:
+
+```elixir
+def handle_event("validate", %{"_target" => ["live_monaco_editor", "my_file.html"]}, socket) do
+  # ignore change events from the editor field
+  {:noreply, socket}
 end
 ```
 
@@ -169,35 +200,6 @@ Set an unique `id` and `path` for each one:
 <LiveMonacoEditor.code_editor id="html" path="my_file.html" />
 <LiveMonacoEditor.code_editor id="css" path="my_file.css" />
 ```
-
-### Inside forms with phx-change
-
-Monaco Editor will create a `textarea` element that will get pushed back to the server with the `path` value:
-
-```heex
-<form phx-change="validate">
-  <LiveMonacoEditor.code_editor path="my_file.html" value="<h1>Title</h1>" />
-</form>
-```
-
-Which you can pattern match to either ignore or process the value:
-
-```elixir
-def handle_event(
-      "validate",
-      %{
-        "_target" => ["live_monaco_editor", "my_file.html"],
-        "live_monaco_editor" => %{"my_file.html" => content}
-      },
-      socket
-    ) do
-  # do something with `content`
-  # or just ignore the event
-  {:noreply, socket}
-end
-```
-
-_Note that only adding new content into the editor will trigger this event. For example hitting "backspace" won't trigger this event._
 
 ### Change language and value
 

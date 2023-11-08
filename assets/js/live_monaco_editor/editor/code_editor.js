@@ -67,7 +67,6 @@ class CodeEditor {
       this._setScreenDependantEditorOptions()
 
       const resizeObserver = new ResizeObserver((entries) => {
-        console.log("resizeObserver")
         entries.forEach(() => {
           if (this.el.offsetHeight > 0) {
             this._setScreenDependantEditorOptions()
@@ -79,7 +78,6 @@ class CodeEditor {
       resizeObserver.observe(this.el)
 
       this.standalone_code_editor.onDidContentSizeChange(() => {
-        console.log("onDidContentSizeChanges")
         const contentHeight = this.standalone_code_editor.getContentHeight()
         this.el.style.height = `${contentHeight}px`
       })

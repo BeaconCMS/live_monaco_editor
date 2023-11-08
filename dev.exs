@@ -98,8 +98,13 @@ defmodule Sample.EditorLive do
     <LiveMonacoEditor.code_editor id="lang" path="file_b" value="# file_b" />
 
     <h1>Inside form</h1>
-    <form phx-change="validate">
-      <LiveMonacoEditor.code_editor id="form" path="file_c" value="# file_c" />
+    <form>
+      <LiveMonacoEditor.code_editor
+        id="form"
+        path="file_c"
+        value="# file_c"
+        change="set_editor_value"
+      />
     </form>
 
     <h1>Elixir</h1>
@@ -174,15 +179,8 @@ defmodule Sample.EditorLive do
      |> LiveMonacoEditor.set_value("<h1>new value</h1>", to: "file_b")}
   end
 
-  def handle_event(
-        "validate",
-        %{
-          "_target" => ["live_monaco_editor", "file_c"],
-          "live_monaco_editor" => %{"file_c" => content}
-        },
-        socket
-      ) do
-    IO.puts(content)
+  def handle_event("set_editor_value", %{"value" => value}, socket) do
+    IO.puts(value)
     {:noreply, socket}
   end
 end
