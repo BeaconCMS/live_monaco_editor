@@ -167,18 +167,23 @@ Do not rely on `phx-change` to fetch the editor content because it has known lim
 - Pressing "backspace" does not trigger the change event.
 - [Only the last 10 lines](https://github.com/BeaconCMS/live_monaco_editor/issues/14) are sent in the event value.
 
+Instead use the `:change` option in the component:
 
 ```heex
 <form>
-  <LiveMonacoEditor.code_editor path="my_file.html" value="<h1>Title</h1>" change="set_editor_value" />
+  <LiveMonacoEditor.code_editor
+    path="my_file.html"
+    value="<h1>Title</h1>"
+    change="set_editor_value"
+  />
 </form>
 ```
 
-Which will trigger an event in the current LiveView process:
+Which will trigger an event `set_editor_value` in the current LiveView process:
 
 ```elixir
 def handle_event("set_editor_value", %{"value" => value}, socket) do
-  # do something with `value`
+  # do something with `value` - it contains the whole editor content
   {:noreply, socket}
 end
 ```
