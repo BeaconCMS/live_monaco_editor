@@ -66,6 +66,24 @@ class CodeEditor {
 
       this._setScreenDependantEditorOptions()
 
+      this.editor.addAction({
+        contextMenuGroupId: "word-wrapping",
+        id: "enable-word-wrapping",
+        label: "Enable word wrapping",
+        precondition: "config.editor.wordWrap == off",
+        keybindings: [monaco.KeyMod.Alt | monaco.KeyCode.KeyZ],
+        run: (editor) => editor.updateOptions({ wordWrap: "on" }),
+      });
+
+      this.editor.addAction({
+        contextMenuGroupId: "word-wrapping",
+        id: "disable-word-wrapping",
+        label: "Disable word wrapping",
+        precondition: "config.editor.wordWrap == on",
+        keybindings: [monaco.KeyMod.Alt | monaco.KeyCode.KeyZ],
+        run: (editor) => editor.updateOptions({ wordWrap: "off" }),
+      });
+      
       const resizeObserver = new ResizeObserver((entries) => {
         entries.forEach(() => {
           if (this.el.offsetHeight > 0) {
