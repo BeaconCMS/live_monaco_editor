@@ -15,9 +15,19 @@ const CodeEditorHook = {
     this.codeEditor.onMount((monaco) => {
       if (this.el.dataset.changeEvent && this.el.dataset.changeEvent !== "") {
         this.codeEditor.standalone_code_editor.onDidChangeModelContent(() => {
-          this.pushEvent(this.el.dataset.changeEvent, {
-            value: this.codeEditor.standalone_code_editor.getValue(),
-          })
+          if (this.el.dataset.target && this.el.dataset.target !== "") {
+            this.pushEventTo(
+              this.el.dataset.target,
+              this.el.dataset.changeEvent,
+              {
+                value: this.codeEditor.standalone_code_editor.getValue(),
+              }
+            )
+          } else {
+            this.pushEvent(this.el.dataset.changeEvent, {
+              value: this.codeEditor.standalone_code_editor.getValue(),
+            })
+          }
         })
       }
 

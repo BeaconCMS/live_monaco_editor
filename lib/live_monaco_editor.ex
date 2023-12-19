@@ -77,6 +77,11 @@ defmodule LiveMonacoEditor do
     doc:
       "event name to capture editor content changes, see https://github.com/BeaconCMS/live_monaco_editor#inside-forms for more info"
 
+  attr :target, :string,
+    default: "",
+    doc:
+      "target for editor events in order to use with LiveComponent, see https://github.com/BeaconCMS/live_monaco_editor#inside-forms for more info"
+
   attr :opts, :map,
     default: @default_opts,
     doc: """
@@ -113,6 +118,7 @@ defmodule LiveMonacoEditor do
         data-path={@path}
         data-value={@value}
         data-change-event={@change}
+        data-target={@target}
         data-opts={@opts}
         {@rest}
       >
