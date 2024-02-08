@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.1.8-dev
+## 0.1.8 (2024-02-08)
 
 ### Enhancements
   * [Add action to toggle word wrapping](https://github.com/BeaconCMS/live_monaco_editor/pull/20)
