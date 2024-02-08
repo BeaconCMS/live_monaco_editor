@@ -628,7 +628,7 @@ var CodeEditor = class {
   _mountEditor() {
     this.opts.value = this.value;
     loader_default.config({
-      paths: { vs: "https://cdn.jsdelivr.net/npm/monaco-editor@latest/min/vs" }
+      paths: { vs: "https://cdn.jsdelivr.net/npm/monaco-editor@0.45.0/min/vs" }
     });
     loader_default.init().then((monaco) => {
       monaco.editor.defineTheme("default", theme);

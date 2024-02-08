@@ -6,6 +6,9 @@
   * [Add action to toggle word wrapping](https://github.com/BeaconCMS/live_monaco_editor/pull/20)
   * [Add support for targeted events](https://github.com/BeaconCMS/live_monaco_editor/pull/21)
 
+### Bug fixes
+  * Replace `monaco-editor@latest` with `monaco-editor@0.45.0` to avoid upstream breaking changes or bugs
+
 ## 0.1.7 (2023-11-08)
 
 ### Enhancements
