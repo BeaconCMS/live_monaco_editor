@@ -2,6 +2,10 @@
 
 ## 0.1.8-dev
 
+### Enhancements
+  * [Add action to toggle word wrapping](https://github.com/BeaconCMS/live_monaco_editor/pull/20)
+  * [Add support for targeted events](https://github.com/BeaconCMS/live_monaco_editor/pull/21)
+
 ## 0.1.7 (2023-11-08)
 
 ### Enhancements
@@ -21,7 +25,7 @@
 ## 0.1.4 (2023-08-14)
 
 ### Bug fixes
-  * add `display: contents` to wrapper div - [lukad](https://github.com/lukad)
+  * Add `display: contents` to wrapper div - [lukad](https://github.com/lukad)
 
 ## 0.1.3 (2023-06-28)
 
