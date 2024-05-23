@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.1.9-dev
+
+### Enhancements
+  * Relax phoenix dependency to `~> 1.6`
+  * Relax phoenix_live_view dependency to `~> 0.16`
+  * Relax jason dependency to `~> 1.3`
+
 ## 0.1.8 (2024-02-08)
 
 ### Enhancements

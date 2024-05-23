@@ -63,9 +63,9 @@ defmodule LiveMonacoEditor.MixProject do
     [
       {:esbuild, "~> 0.5", only: :dev},
       {:ex_doc, "~> 0.29", only: :dev},
-      {:jason, "~> 1.4"},
-      {:phoenix, "~> 1.7"},
-      {:phoenix_live_view, "~> 0.18"},
+      {:jason, "~> 1.3"},
+      {:phoenix, "~> 1.6"},
+      {:phoenix_live_view, "~> 0.16"},
       {:phoenix_live_reload, "~> 1.4", only: :dev},
       {:plug_cowboy, "~> 2.6", only: :dev}
     ]
