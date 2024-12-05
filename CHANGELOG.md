@@ -1,8 +1,10 @@
 # Changelog
 
-## 0.1.9-dev
+## 0.2.0 (2024-12-05)
 
 ### Enhancements
+  * Support Phoenix LiveView 1.0
+  * Update Monaco Editor to 0.52.0
   * Relax phoenix dependency to `~> 1.6`
   * Relax phoenix_live_view dependency to `~> 0.16`
   * Relax jason dependency to `~> 1.3`
