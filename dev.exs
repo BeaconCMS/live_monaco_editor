@@ -74,7 +74,7 @@ defmodule Sample.EditorLive do
         </script>
       </head>
       <body>
-        <%= @inner_content %>
+        {@inner_content}
       </body>
     </html>
     """
