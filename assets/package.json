@@ -5,15 +5,15 @@
     "format-check": "prettier --check ."
   },
   "dependencies": {
-    "@fontsource/jetbrains-mono": "^5.0.3",
-    "@monaco-editor/loader": "^1.4.0",
+    "@fontsource/jetbrains-mono": "^5.0",
+    "@monaco-editor/loader": "^1.4",
     "phoenix": "file:../deps/phoenix",
     "phoenix_html": "file:../deps/phoenix_html",
     "phoenix_live_view": "file:../deps/phoenix_live_view"
   },
   "devDependencies": {
-    "eslint": "^8.40.0",
-    "eslint-config-prettier": "^8.8.0",
-    "prettier": "^2.8.8"
+    "eslint": "^8.40",
+    "eslint-config-prettier": "^8.8",
+    "prettier": "^2.8"
   }
 }
