@@ -48,7 +48,7 @@ class CodeEditor {
     this.opts.value = this.value
 
     loader.config({
-      paths: { vs: "https://cdn.jsdelivr.net/npm/monaco-editor@0.45.0/min/vs" },
+      paths: { vs: "https://cdn.jsdelivr.net/npm/monaco-editor@0.52.0/min/vs" },
     })
 
     loader.init().then((monaco) => {
