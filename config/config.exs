@@ -24,7 +24,7 @@ if Mix.env() == :dev do
   end
 
   config :esbuild,
-    version: "0.17.18",
+    version: "0.24.2",
     module: esbuild.(~w(--format=esm --outfile=../priv/static/live_monaco_editor.esm.js)),
     main: esbuild.(~w(--format=cjs --outfile=../priv/static/live_monaco_editor.cjs.js)),
     cdn:

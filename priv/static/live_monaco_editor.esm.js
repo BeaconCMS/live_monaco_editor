@@ -16,10 +16,9 @@ function ownKeys(object, enumerableOnly) {
   var keys = Object.keys(object);
   if (Object.getOwnPropertySymbols) {
     var symbols = Object.getOwnPropertySymbols(object);
-    if (enumerableOnly)
-      symbols = symbols.filter(function(sym) {
-        return Object.getOwnPropertyDescriptor(object, sym).enumerable;
-      });
+    if (enumerableOnly) symbols = symbols.filter(function(sym) {
+      return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+    });
     keys.push.apply(keys, symbols);
   }
   return keys;
@@ -42,32 +41,27 @@ function _objectSpread2(target) {
   return target;
 }
 function _objectWithoutPropertiesLoose(source, excluded) {
-  if (source == null)
-    return {};
+  if (source == null) return {};
   var target = {};
   var sourceKeys = Object.keys(source);
   var key, i;
   for (i = 0; i < sourceKeys.length; i++) {
     key = sourceKeys[i];
-    if (excluded.indexOf(key) >= 0)
-      continue;
+    if (excluded.indexOf(key) >= 0) continue;
     target[key] = source[key];
   }
   return target;
 }
 function _objectWithoutProperties(source, excluded) {
-  if (source == null)
-    return {};
+  if (source == null) return {};
   var target = _objectWithoutPropertiesLoose(source, excluded);
   var key, i;
   if (Object.getOwnPropertySymbols) {
     var sourceSymbolKeys = Object.getOwnPropertySymbols(source);
     for (i = 0; i < sourceSymbolKeys.length; i++) {
       key = sourceSymbolKeys[i];
-      if (excluded.indexOf(key) >= 0)
-        continue;
-      if (!Object.prototype.propertyIsEnumerable.call(source, key))
-        continue;
+      if (excluded.indexOf(key) >= 0) continue;
+      if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue;
       target[key] = source[key];
     }
   }
@@ -77,12 +71,10 @@ function _slicedToArray(arr, i) {
   return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();
 }
 function _arrayWithHoles(arr) {
-  if (Array.isArray(arr))
-    return arr;
+  if (Array.isArray(arr)) return arr;
 }
 function _iterableToArrayLimit(arr, i) {
-  if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr)))
-    return;
+  if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return;
   var _arr = [];
   var _n = true;
   var _d = false;
@@ -90,41 +82,31 @@ function _iterableToArrayLimit(arr, i) {
   try {
     for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
       _arr.push(_s.value);
-      if (i && _arr.length === i)
-        break;
+      if (i && _arr.length === i) break;
     }
   } catch (err) {
     _d = true;
     _e = err;
   } finally {
     try {
-      if (!_n && _i["return"] != null)
-        _i["return"]();
+      if (!_n && _i["return"] != null) _i["return"]();
     } finally {
-      if (_d)
-        throw _e;
+      if (_d) throw _e;
     }
   }
   return _arr;
 }
 function _unsupportedIterableToArray(o, minLen) {
-  if (!o)
-    return;
-  if (typeof o === "string")
-    return _arrayLikeToArray(o, minLen);
+  if (!o) return;
+  if (typeof o === "string") return _arrayLikeToArray(o, minLen);
   var n = Object.prototype.toString.call(o).slice(8, -1);
-  if (n === "Object" && o.constructor)
-    n = o.constructor.name;
-  if (n === "Map" || n === "Set")
-    return Array.from(o);
-  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n))
-    return _arrayLikeToArray(o, minLen);
+  if (n === "Object" && o.constructor) n = o.constructor.name;
+  if (n === "Map" || n === "Set") return Array.from(o);
+  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);
 }
 function _arrayLikeToArray(arr, len) {
-  if (len == null || len > arr.length)
-    len = arr.length;
-  for (var i = 0, arr2 = new Array(len); i < len; i++)
-    arr2[i] = arr[i];
+  if (len == null || len > arr.length) len = arr.length;
+  for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i];
   return arr2;
 }
 function _nonIterableRest() {
@@ -149,10 +131,9 @@ function ownKeys2(object, enumerableOnly) {
   var keys = Object.keys(object);
   if (Object.getOwnPropertySymbols) {
     var symbols = Object.getOwnPropertySymbols(object);
-    if (enumerableOnly)
-      symbols = symbols.filter(function(sym) {
-        return Object.getOwnPropertyDescriptor(object, sym).enumerable;
-      });
+    if (enumerableOnly) symbols = symbols.filter(function(sym) {
+      return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+    });
     keys.push.apply(keys, symbols);
   }
   return keys;
@@ -211,33 +192,25 @@ function hasOwnProperty(object, property) {
   return Object.prototype.hasOwnProperty.call(object, property);
 }
 function validateChanges(initial, changes) {
-  if (!isObject(changes))
-    errorHandler("changeType");
+  if (!isObject(changes)) errorHandler("changeType");
   if (Object.keys(changes).some(function(field) {
     return !hasOwnProperty(initial, field);
-  }))
-    errorHandler("changeField");
+  })) errorHandler("changeField");
   return changes;
 }
 function validateSelector(selector) {
-  if (!isFunction(selector))
-    errorHandler("selectorType");
+  if (!isFunction(selector)) errorHandler("selectorType");
 }
 function validateHandler(handler) {
-  if (!(isFunction(handler) || isObject(handler)))
-    errorHandler("handlerType");
+  if (!(isFunction(handler) || isObject(handler))) errorHandler("handlerType");
   if (isObject(handler) && Object.values(handler).some(function(_handler) {
     return !isFunction(_handler);
-  }))
-    errorHandler("handlersType");
+  })) errorHandler("handlersType");
 }
 function validateInitial(initial) {
-  if (!initial)
-    errorHandler("initialIsRequired");
-  if (!isObject(initial))
-    errorHandler("initialType");
-  if (isEmpty(initial))
-    errorHandler("initialContent");
+  if (!initial) errorHandler("initialIsRequired");
+  if (!isObject(initial)) errorHandler("initialType");
+  if (isEmpty(initial)) errorHandler("initialContent");
 }
 function throwError(errorMessages3, type) {
   throw new Error(errorMessages3[type] || errorMessages3["default"]);
@@ -335,10 +308,8 @@ var isObject_default = isObject2;
 
 // node_modules/@monaco-editor/loader/lib/es/validators/index.js
 function validateConfig(config3) {
-  if (!config3)
-    errorHandler2("configIsRequired");
-  if (!isObject_default(config3))
-    errorHandler2("configType");
+  if (!config3) errorHandler2("configIsRequired");
+  if (!isObject_default(config3)) errorHandler2("configType");
   if (config3.urls) {
     informAboutDeprecation();
     return {
