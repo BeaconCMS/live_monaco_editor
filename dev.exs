@@ -180,4 +180,4 @@ defmodule Demo.Endpoint do
   plug Demo.Router
 end
 
-PhoenixPlayground.start(endpoint: Demo.Endpoint, live: DemoLive, open_browser: false)
+PhoenixPlayground.start(endpoint: Demo.Endpoint, live: DemoLive, open_browser: true)
