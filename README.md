@@ -244,10 +244,10 @@ You can use the file `dev.exs` which is a self-contained Phoenix application run
 
 ```sh
 mix setup
-iex -S mix dev
+iex dev.exs
 ```
 
-Visit http://localhost:4002
+Visit http://localhost:4000
 
 ## Looking for help with your Elixir project?
 
