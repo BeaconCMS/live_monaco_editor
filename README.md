@@ -27,7 +27,7 @@
 ## Features
 
 - [Lazy load](https://github.com/suren-atoyan/monaco-loader) assets
-- Easily instantiate [single](https://github.com/BeaconCMS/live_monaco_editor#usage) or [multpiple](https://github.com/BeaconCMS/live_monaco_editor#multiple-editors) editors
+- Easily instantiate [single](https://github.com/BeaconCMS/live_monaco_editor#usage) or [multiple](https://github.com/BeaconCMS/live_monaco_editor#multiple-editors) editors
 - Pass any [option available](https://microsoft.github.io/monaco-editor/docs.html#interfaces/editor.IStandaloneEditorConstructionOptions.html) to the editor
 - [Interoperability](https://github.com/BeaconCMS/live_monaco_editor#interface) with the underlying editor
 
