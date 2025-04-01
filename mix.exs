@@ -26,6 +26,15 @@ defmodule LiveMonacoEditor.MixProject do
     ]
   end
 
+  def cli do
+    [
+      preferred_envs: [
+        docs: :docs,
+        "hex.publish": :docs
+      ]
+    ]
+  end
+
   defp package do
     [
       maintainers: ["Leandro Pereira"],
@@ -61,13 +70,16 @@ defmodule LiveMonacoEditor.MixProject do
 
   defp deps do
     [
-      {:esbuild, "~> 0.5", only: :dev},
-      {:ex_doc, "~> 0.29", only: :dev},
       {:jason, "~> 1.3"},
       {:phoenix, "~> 1.6"},
       {:phoenix_live_view, "~> 0.16 or ~> 1.0"},
+      {:esbuild, "~> 0.5", only: :dev},
       {:phoenix_live_reload, "~> 1.4", only: :dev},
-      {:plug_cowboy, "~> 2.6", only: :dev}
+      {:plug_cowboy, "~> 2.6", only: :dev},
+      {:ex_doc, ">= 0.0.0", only: :docs},
+      {:makeup_elixir, "~> 1.0", only: :docs},
+      {:makeup_eex, "~> 2.0", only: :docs},
+      {:makeup_syntect, "~> 0.1", only: :docs}
     ]
   end
 
