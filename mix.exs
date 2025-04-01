@@ -2,13 +2,13 @@ defmodule LiveMonacoEditor.MixProject do
   use Mix.Project
 
   @source_url "https://github.com/BeaconCMS/live_monaco_editor"
-  @version "0.2.0"
+  @version "0.2.1-dev"
 
   def project do
     [
       app: :live_monaco_editor,
       version: @version,
-      elixir: "~> 1.12",
+      elixir: "~> 1.14",
       start_permanent: Mix.env() == :prod,
       package: package(),
       docs: docs(),
