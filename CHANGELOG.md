@@ -1,10 +1,11 @@
 # Changelog
 
-## Unreleased
+## 0.2.1 (2025-04-01)
 
 ### Enhancements
   - Update Monaco Editor to v0.52.2
   - Fix typo in README by @typesend
+  - Docs
 
 ### Breaking Changes
   - Require Elixir 1.14 or later
