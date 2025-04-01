@@ -85,8 +85,8 @@ defmodule LiveMonacoEditor.MixProject do
 
   defp aliases do
     [
-      dev: "run --no-halt dev.exs",
       setup: ["deps.get", "assets.setup"],
+      dev: ["cmd iex dev.exs"],
       "format.all": ["format", "cmd npm run format --prefix ./assets"],
       "assets.setup": ["cmd --cd assets npm install"],
       "assets.build": ["esbuild module", "esbuild main", "esbuild cdn", "esbuild cdn_min"],

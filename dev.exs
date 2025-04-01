@@ -1,4 +1,7 @@
-Mix.install([{:phoenix_playground, "~> 0.1"}, {:live_monaco_editor, path: "."}])
+Mix.install([
+  {:phoenix_playground, "~> 0.1"},
+  {:live_monaco_editor, path: "."}
+])
 
 defmodule DemoLive do
   use Phoenix.LiveView
