@@ -21,8 +21,8 @@
 ## 0.1.8 (2024-02-08)
 
 ### Enhancements
-  - [Add action to toggle word wrapping](https://github.com/BeaconCMS/live_monaco_editor/pull/20)
-  - [Add support for targeted events](https://github.com/BeaconCMS/live_monaco_editor/pull/21)
+  - Add action to toggle word wrapping by @guessthepw 
+  - Add support for targeted events by @ffloyd 
 
 ### Bug fixes
   - Replace `monaco-editor@latest` with `monaco-editor@0.45.0` to avoid upstream breaking changes or bugs
@@ -46,7 +46,7 @@
 ## 0.1.4 (2023-08-14)
 
 ### Bug fixes
-  - Add `display: contents` to wrapper div - [lukad](https://github.com/lukad)
+  - Add `display: contents` to wrapper div by @lukad
 
 ## 0.1.3 (2023-06-28)
 
