@@ -75,12 +75,12 @@ defmodule LiveMonacoEditor do
   attr :change, :string,
     default: "",
     doc:
-      "Event name to capture editor content changes, see https://github.com/BeaconCMS/live_monaco_editor#inside-forms for more info."
+      "Event name to capture editor content changes. See [Inside Forms](#module-inside-forms) for more info."
 
   attr :target, :string,
     default: "",
     doc:
-      "Push events to a target LiveView or LiveComponent. Defaults to current LiveView, otherwise target is passed to pushEventTo method. See https://github.com/BeaconCMS/live_monaco_editor#target for more info"
+      "Push events to a target LiveView or LiveComponent. Defaults to current LiveView, otherwise target is passed to pushEventTo method. See [Target](#module-target) for more info"
 
   attr :opts, :map,
     default: @default_opts,
