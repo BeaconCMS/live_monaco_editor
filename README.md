@@ -38,7 +38,7 @@ Add `:live_monaco_editor` dependency:
 ```elixir
 def deps do
   [
-    {:live_monaco_editor, "~> 0.1"}
+    {:live_monaco_editor, "~> 0.2"}
   ]
 end
 ```
@@ -196,6 +196,16 @@ def handle_event("validate", %{"_target" => ["live_monaco_editor", "my_file.html
   {:noreply, socket}
 end
 ```
+
+### Target
+
+By default, events are pushed to the current LiveView process but you can target a different LiveView or LiveComponent by passing the `target` option:
+
+```heex
+<LiveMonacoEditor.code_editor value={@value} change="code_change_event" target={@myself} />
+```
+
+The given target value is passed to the [pushEventTo](https://hexdocs.pm/phoenix_live_view/js-interop.html#client-hooks-via-phx-hook) method.
 
 ### Multiple editors
 

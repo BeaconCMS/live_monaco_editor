@@ -68,24 +68,24 @@ defmodule LiveMonacoEditor do
   """
   attr :path, :string,
     default: @default_path,
-    doc: "file identifier, pass unique names to render multiple editors"
+    doc: "File identifier, pass unique names to render multiple editors."
 
-  attr :value, :string, default: "", doc: "initial content"
+  attr :value, :string, default: "", doc: "Populate editor with initial value."
 
   attr :change, :string,
     default: "",
     doc:
-      "event name to capture editor content changes, see https://github.com/BeaconCMS/live_monaco_editor#inside-forms for more info"
+      "Event name to capture editor content changes, see https://github.com/BeaconCMS/live_monaco_editor#inside-forms for more info."
 
   attr :target, :string,
     default: "",
     doc:
-      "target for editor events in order to use with LiveComponent, see https://github.com/BeaconCMS/live_monaco_editor#inside-forms for more info"
+      "Push events to a target LiveView or LiveComponent. Defaults to current LiveView, otherwise target is passed to pushEventTo method. See https://github.com/BeaconCMS/live_monaco_editor#target for more info"
 
   attr :opts, :map,
     default: @default_opts,
     doc: """
-    options for the monaco editor instance
+    Options for the monaco editor instance.
 
     ## Example
 
@@ -99,7 +99,7 @@ defmodule LiveMonacoEditor do
     """
 
   attr :style, :string, default: "min-height: 100px; width: 100%;"
-  attr :rest, :global, doc: "the arbitrary HTML attributes to add to the editor container element"
+  attr :rest, :global, doc: "Arbitrary HTML attributes to add to the editor container element"
 
   def code_editor(assigns) do
     opts =
