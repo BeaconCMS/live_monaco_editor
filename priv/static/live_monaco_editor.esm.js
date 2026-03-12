@@ -597,18 +597,20 @@ var CodeEditor = class {
     }
   }
   _mountEditor() {
-    this.opts.value = this.value;
-    loader_default.config({
+    const { loader: loaderConfig, ...editorOpts } = this.opts;
+    editorOpts.value = this.value;
+    const defaultLoaderConfig = {
       paths: { vs: "https://cdn.jsdelivr.net/npm/monaco-editor@0.52.2/min/vs" }
-    });
+    };
+    loader_default.config(loaderConfig || defaultLoaderConfig);
     loader_default.init().then((monaco) => {
       monaco.editor.defineTheme("default", theme);
       let modelUri = monaco.Uri.parse(this.path);
-      let language = this.opts.language;
+      let language = editorOpts.language;
       let model = monaco.editor.createModel(this.value, language, modelUri);
-      this.opts.language = void 0;
-      this.opts.model = model;
-      this.standalone_code_editor = monaco.editor.create(this.el, this.opts);
+      editorOpts.language = void 0;
+      editorOpts.model = model;
+      this.standalone_code_editor = monaco.editor.create(this.el, editorOpts);
       this._onMount.forEach((callback) => callback(monaco));
       this._setScreenDependantEditorOptions();
       this.standalone_code_editor.addAction({
