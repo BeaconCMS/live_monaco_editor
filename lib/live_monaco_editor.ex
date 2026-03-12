@@ -130,7 +130,16 @@ defmodule LiveMonacoEditor do
   @doc """
   The default Monaco Editor opts passed to `<.code_editor>`
   """
-  def default_opts, do: @default_opts
+  def default_opts do
+    maybe_put_default_loader(@default_opts)
+  end
+
+  defp maybe_put_default_loader(opts) do
+    case Application.get_env(:live_monaco_editor, :loader) do
+      nil -> opts
+      loader_opts -> Map.put_new(opts, "loader", loader_opts)
+    end
+  end
 
   # https://github.com/phoenixframework/phoenix_live_view/blob/c3c21d6de55315adea04e28f7a461a91e46497bb/lib/phoenix_live_view/utils.ex#L176-L183
   defp random_encoded_bytes do

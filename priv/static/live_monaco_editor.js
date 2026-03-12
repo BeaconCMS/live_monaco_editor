@@ -2,7 +2,21 @@ var LiveMonacoEditor = (() => {
   var __defProp = Object.defineProperty;
   var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
   var __getOwnPropNames = Object.getOwnPropertyNames;
+  var __getOwnPropSymbols = Object.getOwnPropertySymbols;
   var __hasOwnProp = Object.prototype.hasOwnProperty;
+  var __propIsEnum = Object.prototype.propertyIsEnumerable;
+  var __objRest = (source, exclude) => {
+    var target = {};
+    for (var prop in source)
+      if (__hasOwnProp.call(source, prop) && exclude.indexOf(prop) < 0)
+        target[prop] = source[prop];
+    if (source != null && __getOwnPropSymbols)
+      for (var prop of __getOwnPropSymbols(source)) {
+        if (exclude.indexOf(prop) < 0 && __propIsEnum.call(source, prop))
+          target[prop] = source[prop];
+      }
+    return target;
+  };
   var __export = (target, all) => {
     for (var name in all)
       __defProp(target, name, { get: all[name], enumerable: true });
@@ -622,18 +636,20 @@ var LiveMonacoEditor = (() => {
       }
     }
     _mountEditor() {
-      this.opts.value = this.value;
-      loader_default.config({
+      const _a = this.opts, { loader: loaderConfig } = _a, editorOpts = __objRest(_a, ["loader"]);
+      editorOpts.value = this.value;
+      const defaultLoaderConfig = {
         paths: { vs: "https://cdn.jsdelivr.net/npm/monaco-editor@0.52.2/min/vs" }
-      });
+      };
+      loader_default.config(loaderConfig || defaultLoaderConfig);
       loader_default.init().then((monaco) => {
         monaco.editor.defineTheme("default", theme);
         let modelUri = monaco.Uri.parse(this.path);
-        let language = this.opts.language;
+        let language = editorOpts.language;
         let model = monaco.editor.createModel(this.value, language, modelUri);
-        this.opts.language = void 0;
-        this.opts.model = model;
-        this.standalone_code_editor = monaco.editor.create(this.el, this.opts);
+        editorOpts.language = void 0;
+        editorOpts.model = model;
+        this.standalone_code_editor = monaco.editor.create(this.el, editorOpts);
         this._onMount.forEach((callback) => callback(monaco));
         this._setScreenDependantEditorOptions();
         this.standalone_code_editor.addAction({

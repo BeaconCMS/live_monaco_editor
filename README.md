@@ -134,6 +134,20 @@ The code editor is created with default options to provide a better UX out-of-th
 />
 ```
 
+### Configure the Monaco loader
+
+The loader will load sources from a CDN by default. You can configure this:
+
+```elixir
+config :live_monaco_editor, :loader, %{
+  "paths" => %{
+    "vs" => "/js/monaco-editor/min/vs"
+  }
+}
+```
+
+This is useful when you want to self-host Monaco assets. 
+
 ### Fetching the editor value
 
 You can listen to events emitted by the code editor to fetch its current value and send it back to the parent LiveView where the component is used. Firstly, add a event listener:
@@ -273,4 +287,3 @@ Have a project in mind? [Get in touch](https://dockyard.com/contact/hire-us)!
 * [Jonatan Kłosko](https://github.com/jonatanklosko) for his amazing work with [Livebook Editor](https://github.com/livebook-dev/livebook/blob/main/assets/js/hooks/cell_editor.js)
 * [Logo](https://www.flaticon.com/free-icons/script) created by kerismaker - Flaticon
 * [Logo font](https://fonts.google.com/specimen/Source+Code+Pro) designed by Paul D. hunt
-
