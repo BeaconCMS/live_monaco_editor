@@ -1,0 +1,33 @@
+name: JavaScript CI
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - "assets/**"
+      - ".github/workflows/javascript.yml"
+  pull_request:
+    paths:
+      - "assets/**"
+      - ".github/workflows/javascript.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+
+      # Run straight from the registry: oxlint is a single binary, and the
+      # workspace's own `npm install` would try to resolve the `file:../deps`
+      # packages that only exist after `mix deps.get`.
+      - run: npx --yes oxlint@1.80.0
+        working-directory: assets

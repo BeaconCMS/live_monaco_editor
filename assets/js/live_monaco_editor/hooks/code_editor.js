@@ -53,8 +53,8 @@ const CodeEditorHook = {
         )
       })
 
-      this.el.removeAttribute("data-value")
-      this.el.removeAttribute("data-opts")
+      delete this.el.dataset.value
+      delete this.el.dataset.opts
 
       this.el.dispatchEvent(
         new CustomEvent("lme:editor_mounted", {

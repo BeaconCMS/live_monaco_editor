@@ -18,45 +18,45 @@ const colors = {
   peach: "#d19a66",
 }
 
-const rules = (colors) => [
-  { token: "", foreground: colors.default },
-  { token: "variable", foreground: colors.lightRed },
-  { token: "constant", foreground: colors.blue },
-  { token: "constant.character.escape", foreground: colors.blue },
-  { token: "comment", foreground: colors.gray },
-  { token: "number", foreground: colors.blue },
-  { token: "regexp", foreground: colors.lightRed },
-  { token: "type", foreground: colors.lightRed },
-  { token: "string", foreground: colors.green },
-  { token: "keyword", foreground: colors.purple },
-  { token: "operator", foreground: colors.peach },
-  { token: "delimiter.bracket.embed", foreground: colors.red },
-  { token: "sigil", foreground: colors.teal },
-  { token: "function", foreground: colors.blue },
-  { token: "function.call", foreground: colors.default },
+const rules = (palette) => [
+  { token: "", foreground: palette.default },
+  { token: "variable", foreground: palette.lightRed },
+  { token: "constant", foreground: palette.blue },
+  { token: "constant.character.escape", foreground: palette.blue },
+  { token: "comment", foreground: palette.gray },
+  { token: "number", foreground: palette.blue },
+  { token: "regexp", foreground: palette.lightRed },
+  { token: "type", foreground: palette.lightRed },
+  { token: "string", foreground: palette.green },
+  { token: "keyword", foreground: palette.purple },
+  { token: "operator", foreground: palette.peach },
+  { token: "delimiter.bracket.embed", foreground: palette.red },
+  { token: "sigil", foreground: palette.teal },
+  { token: "function", foreground: palette.blue },
+  { token: "function.call", foreground: palette.default },
 
   // Markdown specific
   { token: "emphasis", fontStyle: "italic" },
   { token: "strong", fontStyle: "bold" },
-  { token: "keyword.md", foreground: colors.lightRed },
-  { token: "keyword.table", foreground: colors.lightRed },
-  { token: "string.link.md", foreground: colors.blue },
-  { token: "variable.md", foreground: colors.teal },
-  { token: "string.md", foreground: colors.default },
-  { token: "variable.source.md", foreground: colors.default },
+  { token: "keyword.md", foreground: palette.lightRed },
+  { token: "keyword.table", foreground: palette.lightRed },
+  { token: "string.link.md", foreground: palette.blue },
+  { token: "variable.md", foreground: palette.teal },
+  { token: "string.md", foreground: palette.default },
+  { token: "variable.source.md", foreground: palette.default },
 
   // XML specific
-  { token: "tag", foreground: colors.lightRed },
-  { token: "metatag", foreground: colors.lightRed },
-  { token: "attribute.name", foreground: colors.peach },
-  { token: "attribute.value", foreground: colors.green },
+  { token: "tag", foreground: palette.lightRed },
+  { token: "metatag", foreground: palette.lightRed },
+  { token: "attribute.name", foreground: palette.peach },
+  { token: "attribute.value", foreground: palette.green },
 
   // JSON specific
-  { token: "string.key", foreground: colors.lightRed },
-  { token: "keyword.json", foreground: colors.blue },
+  { token: "string.key", foreground: palette.lightRed },
+  { token: "keyword.json", foreground: palette.blue },
 
   // SQL specific
-  { token: "operator.sql", foreground: colors.purple },
+  { token: "operator.sql", foreground: palette.purple },
 ]
 
 const theme = {

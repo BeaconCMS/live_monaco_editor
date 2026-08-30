@@ -2,7 +2,8 @@
   "private": true,
   "scripts": {
     "format": "prettier --write .",
-    "format-check": "prettier --check ."
+    "format-check": "prettier --check .",
+    "lint": "oxlint"
   },
   "dependencies": {
     "@monaco-editor/loader": "^1.4",
@@ -12,8 +13,7 @@
   },
   "devDependencies": {
     "@fontsource/jetbrains-mono": "^5.1",
-    "eslint": "^9.19",
-    "eslint-config-prettier": "^8.8",
+    "oxlint": "^1.80",
     "prettier": "^2.8"
   }
 }

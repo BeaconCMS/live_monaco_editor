@@ -70,6 +70,7 @@ defmodule LiveMonacoEditor.MixProject do
 
   defp deps do
     [
+      {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
       {:jason, "~> 1.3"},
       {:phoenix, "~> 1.6"},
       {:phoenix_live_view, "~> 0.16 or ~> 1.0"},
@@ -89,6 +90,7 @@ defmodule LiveMonacoEditor.MixProject do
       dev: ["cmd iex dev.exs"],
       "format.all": ["format", "cmd npm run format --prefix ./assets"],
       "assets.setup": ["cmd --cd assets npm install"],
+      "assets.lint": ["cmd --cd assets npm run lint"],
       "assets.build": ["esbuild module", "esbuild main", "esbuild cdn", "esbuild cdn_min"],
       "assets.watch": ["esbuild module --watch"]
     ]

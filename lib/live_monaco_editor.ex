@@ -74,8 +74,7 @@ defmodule LiveMonacoEditor do
 
   attr :change, :string,
     default: "",
-    doc:
-      "Event name to capture editor content changes. See [Inside Forms](#module-inside-forms) for more info."
+    doc: "Event name to capture editor content changes. See [Inside Forms](#module-inside-forms) for more info."
 
   attr :target, :string,
     default: "",
