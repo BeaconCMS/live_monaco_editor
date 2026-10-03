@@ -598,6 +598,8 @@ var CodeEditor = class {
     this.value = value;
     this.opts = opts;
     this.standalone_code_editor = null;
+    this.windowResizeHandler = null;
+    this.modelContentChangeDisposable = null;
     this._onMount = [];
   }
   isMounted() {
@@ -613,6 +615,10 @@ var CodeEditor = class {
     this._onMount.push(callback);
   }
   dispose() {
+    if (this.windowResizeHandler) {
+      window.removeEventListener("resize", this.windowResizeHandler);
+    }
+    this.modelContentChangeDisposable?.dispose();
     if (this.isMounted()) {
       const model = this.standalone_code_editor.getModel();
       if (model) {
@@ -652,20 +658,23 @@ var CodeEditor = class {
         keybindings: [monaco.KeyMod.Alt | monaco.KeyCode.KeyZ],
         run: (editor) => editor.updateOptions({ wordWrap: "off" })
       });
-      const resizeObserver = new ResizeObserver((entries) => {
-        entries.forEach(() => {
-          if (this.el.offsetHeight > 0) {
-            this._setScreenDependantEditorOptions();
-            this.standalone_code_editor.layout();
-          }
-        });
+      this.windowResizeHandler = () => {
+        if (this.el.offsetHeight > 0) {
+          this._setScreenDependantEditorOptions();
+          this.standalone_code_editor.layout();
+          this._resizeToContent();
+        }
+      };
+      window.addEventListener("resize", this.windowResizeHandler);
+      this.modelContentChangeDisposable = this.standalone_code_editor.onDidChangeModelContent(() => {
+        this._resizeToContent();
       });
-      resizeObserver.observe(this.el);
-      this.standalone_code_editor.onDidContentSizeChange(() => {
-        const contentHeight = this.standalone_code_editor.getContentHeight();
-        this.el.style.height = `${contentHeight}px`;
-      });
+      this._resizeToContent();
     });
+  }
+  _resizeToContent() {
+    const contentHeight = this.standalone_code_editor.getContentHeight();
+    this.el.style.height = `${contentHeight}px`;
   }
   _setScreenDependantEditorOptions() {
     if (window.screen.width < 768) {

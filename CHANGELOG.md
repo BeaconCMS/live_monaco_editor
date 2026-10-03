@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.2.2 (2026-10-03)
+
+### Fixes
+- Prevent an editor resize feedback loop after content changes ([#34](https://github.com/BeaconCMS/live_monaco_editor/issues/34)).
+
 ## 0.2.1 (2025-04-01)
 
 ### Enhancements
@@ -75,4 +80,3 @@
 
 ### Enhancements
   - Add `<LiveMonacoEditor.code_editor>` component
-
